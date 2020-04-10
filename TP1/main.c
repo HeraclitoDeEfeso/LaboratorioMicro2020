@@ -8,17 +8,14 @@
 #pragma config CP = OFF // Code Protection bit (Program Memory code protection is disabled)
 #pragma config CPD = OFF // Data Code Protection bit (Data memory code protection is disabled)
 
-#define LED GPIObits.GP0
-#define BUT GPIObits.GP1
-
 #include <xc.h>
 
 void init() 
 {
     CMCON = 0b00000111;
     ANSEL = 0;
-    TRISIO=0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los demás como INPUT.
-    GPIO = 0;
+    TRISIO = 0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los demás como INPUT.
+    GPIO = 0; //clear GPbits.
 }
 
 void test()
