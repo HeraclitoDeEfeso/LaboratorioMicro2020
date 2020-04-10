@@ -17,7 +17,7 @@ void init()
 {
     CMCON = 0b00000111;
     ANSEL = 0;
-    TRISIO=0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los dem·s como INPUT.
+    TRISIO=0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los dem√°s como INPUT.
     GPIO = 0;
 }
 
@@ -32,14 +32,13 @@ void test()
 void main()
 {
     init();
-    GP0 = 1;
     while(1)
     {
 	GP0 = 0;
 	if (GP1 == 1)
 	{
 	    GP0 = ~GP0;
-	    __delay_ms(100); //Por alguna razÛn hay que darle un delay, no sÈ si es por el emulador, o por alguna especificaciÛn que no conozco del manejador de eventos del pic.
+	    __delay_ms(100); //Por alguna raz√≥n hay que darle un delay, no s√© si es por el emulador, o por alguna especificaci√≥n que no conozco del manejador de eventos del pic.
 	}
     }
 }
