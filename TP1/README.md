@@ -9,9 +9,25 @@
 3. Siguiendo las indicaciones enviadas instalar la herramienta de simulación y diseño de circuitos Proteus.
    Crear un proyecto inicial que contenga un pulsador, led, resistencias y un microcontrolador PIC12F675.
    Realizar las conexiones y programas para: 
-   1. Encender el led cuando se mantiene oprimido el botón/pulsador. 
-   2. Encender el led cuando se oprime el botón, mantenerlo encendido y apagarlo cuando se oprima por segunda vez el pulsador. 
-   3. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
-   4. Agregar un botón para generar una interrupción.
+   - [x] I. Encender el led cuando se mantiene oprimido el botón/pulsador. 
+   - [ ] II. Encender el led cuando se oprime el botón, mantenerlo encendido y apagarlo cuando se oprima por segunda vez el pulsador. 
+   - [x] III. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
+   - [ ] IV. Agregar un botón para generar una interrupción.
    
    Para evaluar el sistema funcionando deberá cargar el programa en el microcontrolador y simularlo en el entorno.
+
+___TODO___
+
+- [ ] Agregar Carátula al Informe en https://docs.google.com/document/d/1Vk2x0DdjXs48z-ck_ZTaCTGm6tid47qU_HMdgjK__X4/edit?usp=sharing
+
+- [ ] Agregar Enunciado al Informe
+
+- [ ] Agregar Plataforma de desarrollo al Informe.
+
+   Agregar Descripción de cada punto (dos párrafos) y código al Informe.
+   - [ ] Punto I.
+   - [ ] Punto II.
+   - [ ] Punto III.
+   - [ ] Punto IV.
+
+- [ ] Agregar Referencias de bibliografía y software utilizado
