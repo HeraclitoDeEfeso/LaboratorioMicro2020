@@ -11,20 +11,24 @@
    Realizar las conexiones y programas para: 
    - [x] I. Encender el led cuando se mantiene oprimido el botón/pulsador. 
    - [ ] II. Encender el led cuando se oprime el botón, mantenerlo encendido y apagarlo cuando se oprima por segunda vez el pulsador. 
-   - [x] III. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
-   - [ ] IV. Agregar un botón para generar una interrupción.
+   - [ ] III. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
+   - [x] IV. Agregar un botón para generar una interrupción.
    
    Para evaluar el sistema funcionando deberá cargar el programa en el microcontrolador y simularlo en el entorno.
 
 ___TODO___
 
+- [ ] Agregar a la placa base el estabilizador de tensión. (opcional)
+
+- [ ] Agregar a los programas la configuración para clock externo.
+
+- [ ] Cambiar pragma de MCLR y recompilar programas de item II y III para usar con reset de placa2
+
 - [ ] Agregar Carátula al Informe en https://docs.google.com/document/d/1Vk2x0DdjXs48z-ck_ZTaCTGm6tid47qU_HMdgjK__X4/edit?usp=sharing
 
-- [ ] Agregar Enunciado al Informe
+- [ ] Agregar Plataforma de desarrollo e instrucciones para compilar/ejecutar al Informe.
 
-- [ ] Agregar Plataforma de desarrollo al Informe.
-
-   Agregar Descripción de cada punto (dos párrafos) y código al Informe.
+   Agregar Descripción de cada punto (dos párrafos) con esquemático y código al Informe.
    - [ ] Punto I.
    - [ ] Punto II.
    - [ ] Punto III.
