@@ -20,11 +20,11 @@ ___TODO___
 
 - [ ] Agregar a la placa base el estabilizador de tensión. (opcional)
 
-- [ ] Agregar a los programas la configuración para clock externo.
+- [ ] Agregar a los programas la configuración para clock externo. (opcional)
 
 - [ ] Cambiar pragma de MCLR y recompilar programas de item II y III para usar con reset de placa2
 
-- [ ] Agregar Carátula al Informe en https://docs.google.com/document/d/1Vk2x0DdjXs48z-ck_ZTaCTGm6tid47qU_HMdgjK__X4/edit?usp=sharing
+- [x] Agregar Carátula al Informe en https://docs.google.com/document/d/1Vk2x0DdjXs48z-ck_ZTaCTGm6tid47qU_HMdgjK__X4/edit?usp=sharing
 
 - [ ] Agregar Plataforma de desarrollo e instrucciones para compilar/ejecutar al Informe.
 
@@ -34,4 +34,8 @@ ___TODO___
    - [ ] Punto III.
    - [ ] Punto IV.
 
-- [ ] Agregar Referencias de bibliografía y software utilizado
+   Agregar Referencias de bibliografía y software utilizado
+   - [ ] Punto I.
+   - [ ] Punto II.
+   - [ ] Punto III.
+   - [ ] Punto IV.
