@@ -10,7 +10,7 @@
    Crear un proyecto inicial que contenga un pulsador, led, resistencias y un microcontrolador PIC12F675.
    Realizar las conexiones y programas para: 
    - [x] I. Encender el led cuando se mantiene oprimido el botón/pulsador. 
-   - [ ] II. Encender el led cuando se oprime el botón, mantenerlo encendido y apagarlo cuando se oprima por segunda vez el pulsador. 
+   - [x] II. Encender el led cuando se oprime el botón, mantenerlo encendido y apagarlo cuando se oprima por segunda vez el pulsador. 
    - [ ] III. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
    - [x] IV. Agregar un botón para generar una interrupción.
    
@@ -18,11 +18,11 @@
 
 ___TODO___
 
-- [ ] Agregar a la placa base el estabilizador de tensión. (opcional)
+~~Agregar a la placa base el estabilizador de tensión. (opcional)~~
 
 - [ ] Agregar a los programas la configuración para clock externo. (opcional)
 
-- [ ] Cambiar pragma de MCLR y recompilar programas de item II y III para usar con reset de placa2
+- [x] Cambiar pragma de MCLR y recompilar programas de item II y III para usar con reset de placa2
 
 - [x] Agregar Carátula al Informe en https://docs.google.com/document/d/1Vk2x0DdjXs48z-ck_ZTaCTGm6tid47qU_HMdgjK__X4/edit?usp=sharing
 
