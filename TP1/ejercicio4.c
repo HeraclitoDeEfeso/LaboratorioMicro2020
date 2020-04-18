@@ -1,0 +1,32 @@
+#define _XTAL_FREQ 4000000
+
+#pragma config FOSC = EXTRCIO
+#pragma config WDTE = OFF 
+#pragma config PWRTE = OFF 
+#pragma config MCLRE = ON 
+#pragma config BOREN = OFF 
+#pragma config CP = OFF 
+#pragma config CPD = OFF 
+
+#include <xc.h>
+
+void main()
+{
+    CMCON = 0b00000111;     // Disable comparators
+    ANSEL = 0;              // Disable analog signal
+    TRISIO = 0b00111110;    // PIN0 output 
+    GPIO = 0;               // All output to low
+    
+    while (1)
+    {
+	    if (GP1 == 1)
+	    {
+	        __delay_ms(10);
+            if (GP1 == 1)
+            {
+                GP0 = ~GP0;
+            }
+            while (GP1 == 1);
+	    }
+    }
+}
