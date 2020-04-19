@@ -8,24 +8,36 @@
 #define _XTAL_FREQ 4000000
 
 #pragma config FOSC = EXTRCIO
-#pragma config WDTE = OFF // Watchdog Timer Enable bit (WDT disabled)
-#pragma config PWRTE = OFF // Power-Up Timer Enable bit (PWRT disabled)
-#pragma config MCLRE = OFF // GP3/MCLR pin function select (GP3/MCLR pin function is digital I/O, MCLR internally tied to VDD)
-#pragma config BOREN = OFF // Brown-out Detect Enable bit (BOD disabled)
-#pragma config CP = OFF // Code Protection bit (Program Memory code protection is disabled)
-#pragma config CPD = OFF // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config WDTE = OFF 
+#pragma config PWRTE = OFF 
+#pragma config MCLRE = OFF 
+#pragma config BOREN = OFF 
+#pragma config CP = OFF 
+#pragma config CPD = OFF 
+
 #include <xc.h>
 
-int wait(){ //devuelve 1 si se debe cambiar el estado
+// Funcion wait: devuelve 1 si se debe cambiar el estado
+int wait(){ 
     int entradaanterior = GP1;
     int contador = 0;
     int botonpulsado = 0;
-    while(contador < 1000){ //el ciclo tardara un segundo salvo que se apriete y se suelte el pulsador
+    
+    // El ciclo tardara un segundo.
+    // Salvo que se apriete y se suelte el pulsador.
+    while(contador < 1000)
+    { 
         __delay_ms(1);
-        if(entradaanterior != GP1){
-            if(botonpulsado == 0){ //se esta apretando el pulsador
+        if(entradaanterior != GP1)
+        {
+            if(botonpulsado == 0)   // Se esta apretando el pulsador
+            { 
                 botonpulsado = 1;
-            }else return 1; //se solto el pulsador entonces aviso que de sebe cambiar de estado
+            } 
+            else 
+            {
+                return 1;           // Solto pulsador. Cambiar de estado
+            }    
         }
         entradaanterior = GP1;
         contador++;
@@ -36,24 +48,25 @@ int wait(){ //devuelve 1 si se debe cambiar el estado
 void main(){
     CMCON = 0b00000111;
     ANSEL = 0;
-    TRISIO = 0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los dem�s como INPUT.
-    GPIO = 0; //clear GPbits.
+    TRISIO = 0b11111110;            // GP0 como OUTPUT, el resto INPUT
+    GPIO = 0;                       // Clear GPbits.
     int estado = 0;
+    
     while(1){
         switch(estado){
-            case 0://inicial(llego aca con el led apagado) 
+            case 0:                 // Inicial, llego con led apagado 
                 if(wait() == 1){
                    estado = 1; 
                 }
             break;
-            case 1://encendido(llego aca con el led apagado)
+            case 1:                 // Encendido, llego con led apagado
                 GP0 = ~GP0;
                 if(wait() == 1){
                    estado = 2;
                    break;
                 }              
             break; 
-            case 2://apagado(llego aca con el parpadeo activo)
+            case 2:                 // Apagado, llego con parpadeo activo
                 GP0 = 0;
                 estado = 0;
                 break;
