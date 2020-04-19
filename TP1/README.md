@@ -11,7 +11,7 @@
    Realizar las conexiones y programas para: 
    - [x] I. Encender el led cuando se mantiene oprimido el botón/pulsador. 
    - [x] II. Encender el led cuando se oprime el botón, mantenerlo encendido y apagarlo cuando se oprima por segunda vez el pulsador. 
-   - [ ] III. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
+   - [x] III. Idem 2, pero mientras el led esta encendido debe parpadear a una frecuencia de 1 segundo. 
    - [x] IV. Agregar un botón para generar una interrupción.
    
    Para evaluar el sistema funcionando deberá cargar el programa en el microcontrolador y simularlo en el entorno.
@@ -31,11 +31,11 @@ ___TODO___
    Agregar Descripción de cada punto (dos párrafos) con esquemático y código al Informe.
    - [ ] Punto I.
    - [x] Punto II.
-   - [ ] Punto III.
+   - [x] Punto III.
    - [x] Punto IV.
 
    Agregar Referencias de bibliografía y software utilizado
-   - [ ] Punto I.
+   - [x] Punto I.
    - [x] Punto II.
-   - [ ] Punto III.
+   - [x] Punto III.
    - [x] Punto IV.
