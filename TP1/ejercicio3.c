@@ -41,13 +41,10 @@ void test()
 int wait(){ //devuelve 1 si se debe cambiar el estado
     int entradaanterior = GP1;
     int contador = 0;
-    int botonpulsado = 0;
     while(contador < 1000){ //el ciclo tardara un segundo salvo que se apriete y se suelte el pulsador
         __delay_ms(1);
-        if(entradaanterior != GP1){
-            if(botonpulsado == 0){ //se esta apretando el pulsador
-                botonpulsado = 1;
-            }else return 1; //se solto el pulsador entonces aviso que de sebe cambiar de estado
+        if(entradaanterior == 1 && GP1 == 0){//solte el boton
+            return 1;
         }
         entradaanterior = GP1;
         contador++;
@@ -87,35 +84,4 @@ void main(){
         }           
     }
 }
-void alternoled(){ //cambio el valor de la salida(LED))
-    if(GP0 == 1){
-        GP0 = 0 ;
-    }else GP0 = 1 ;
-}
 
-void main(){
-    init();
-    GP0 = 0;
-    GP1 = 0;
-    int estado = 0;
-    while(1){
-        switch(estado){
-            case 0://inicial(llego aca con el led apagado) 
-                if(wait() == 1){
-                   estado = 1; 
-                }
-            break;
-            case 1://encendido(llego aca con el led apagado)
-                alternoled();
-                if(wait() == 1){
-                   estado = 2;
-                   break;
-                }              
-            break; 
-            case 2://apagado(llego aca con el parpadeo activo)
-                GP0 = 0;
-                estado = 0;
-                break;
-        }           
-    }
-}
