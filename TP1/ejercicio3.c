@@ -16,14 +16,6 @@
 #pragma config CPD = OFF // Data Code Protection bit (Data memory code protection is disabled)
 #include <xc.h>
 
-void init() 
-{
-    CMCON = 0b00000111;
-    ANSEL = 0;
-    TRISIO = 0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los dem�s como INPUT.
-    GPIO = 0; //clear GPbits.
-}
-
 int wait(){ //devuelve 1 si se debe cambiar el estado
     int entradaanterior = GP1;
     int contador = 0;
@@ -41,16 +33,11 @@ int wait(){ //devuelve 1 si se debe cambiar el estado
     return 0;
 }
 
-void alternoled(){ //cambio el valor de la salida(LED))
-    if(GP0 == 1){
-        GP0 = 0 ;
-    }else GP0 = 1 ;
-}
-
 void main(){
-    init();
-    GP0 = 0;
-    GP1 = 0;
+    CMCON = 0b00000111;
+    ANSEL = 0;
+    TRISIO = 0b11111110; //bit en 1 es input, en 0 es output. Seteo GP0 como OUTPUT y los dem�s como INPUT.
+    GPIO = 0; //clear GPbits.
     int estado = 0;
     while(1){
         switch(estado){
@@ -60,7 +47,7 @@ void main(){
                 }
             break;
             case 1://encendido(llego aca con el led apagado)
-                alternoled();
+                GP0 = ~GP0;
                 if(wait() == 1){
                    estado = 2;
                    break;
