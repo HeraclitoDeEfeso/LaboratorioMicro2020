@@ -29,7 +29,7 @@ ___TODO___
 - [x] Agregar Plataforma de desarrollo e instrucciones para compilar/ejecutar al Informe.
 
    Agregar Descripción de cada punto (dos párrafos) con esquemático y código al Informe.
-   - [ ] Punto I.
+   - [x] Punto I.
    - [x] Punto II.
    - [x] Punto III.
    - [x] Punto IV.
