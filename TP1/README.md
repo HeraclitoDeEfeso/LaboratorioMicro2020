@@ -26,16 +26,16 @@ ___TODO___
 
 - [x] Agregar Carátula al Informe en https://docs.google.com/document/d/1Vk2x0DdjXs48z-ck_ZTaCTGm6tid47qU_HMdgjK__X4/edit?usp=sharing
 
-- [ ] Agregar Plataforma de desarrollo e instrucciones para compilar/ejecutar al Informe.
+- [x] Agregar Plataforma de desarrollo e instrucciones para compilar/ejecutar al Informe.
 
    Agregar Descripción de cada punto (dos párrafos) con esquemático y código al Informe.
    - [ ] Punto I.
-   - [ ] Punto II.
+   - [x] Punto II.
    - [ ] Punto III.
-   - [ ] Punto IV.
+   - [x] Punto IV.
 
    Agregar Referencias de bibliografía y software utilizado
    - [ ] Punto I.
-   - [ ] Punto II.
+   - [x] Punto II.
    - [ ] Punto III.
-   - [ ] Punto IV.
+   - [x] Punto IV.
