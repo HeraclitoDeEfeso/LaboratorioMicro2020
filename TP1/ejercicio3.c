@@ -1,10 +1,3 @@
-/*
- * File:   ejercicio 3.C
- * Author: matias
- *
- * Created on 11 de abril de 2020, 16:53
- */
-
 #define _XTAL_FREQ 4000000
 
 #pragma config FOSC = INTRCIO
