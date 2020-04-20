@@ -3,7 +3,7 @@
 #pragma config FOSC = INTRCIO
 #pragma config WDTE = OFF 
 #pragma config PWRTE = OFF 
-#pragma config MCLRE = ON 
+#pragma config MCLRE = OFF 
 #pragma config BOREN = OFF 
 #pragma config CP = OFF 
 #pragma config CPD = OFF 
