@@ -34,6 +34,7 @@ void main()
             {
                 GP0 = ~blink;
                 blink = ~blink;
+                count = 0;
             }
             while (GP1 == 1);
 	    }
