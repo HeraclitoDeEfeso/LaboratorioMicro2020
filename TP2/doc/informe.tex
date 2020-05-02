@@ -1,27 +1,51 @@
+% Este es un comentario como en C y los uso para explicarles latex pero pueden no darle bola
 \documentclass{article}
+% Eso define el tipo de documento.
+% `article` se divide en secciones y tiene el resumen pegado al texto
 \usepackage{graphicx}
+% Son como los import de librerias. `graphicx` es para importar imagenes
 \usepackage{listings}
+% `listings` es para insertar los codigo fuente
+\usepackage[utf8]{inputenc}
+% `utf8` es para no tener problemas con el encoding (acentos, etc.)
 \title{Trabajo Práctico Nro. 1:\\“GPIO en Microcontroladores”}
 \author{Amodey, Leandro - leandroamodey@gmail.com
 \and Monti, Matías - matiasmonti@hotmail.com
 \and Quinteros, Fernando - lordfers@gmail.com
 \and Araneda, Alejandro – eloscurodeefeso@hotmail.com}
 \date{1er. Cuatrimestre 2020\\Lunes, 11 de Mayo, 8hs.}
+% `title`, `author` y `date` es informacion que todos los archivos tienen.
 \def\teacher{Ing. Jorge H. Doorn\\Ing. Matías Presso}
+% Con `def` sirve para definir variables.
 \begin{document}
+% Arranca el documento
 \begin{titlepage}
-\makeatletter
+% Creamos un titulo a medida
+\makeatletter 
+% `makeatletter` es para reemplazar `title`, `author` y `date`
 \centering
+% centrado
 \includegraphics{logo.png}\par
+% incluye el gráfico `par` señala fin de parrafo
 {\Large Ingeniería en Computación \par}
+% `Large` es el tamaño de letra, igual que `LARGE` y `huge`. 
+% Uso llaves {} para que solo valga entre llaves.
 \vspace{0.5cm}
+% Espacio vertical
 {\LARGE Laboratorio de Microprocesadores \par}
 \vfill
+% `vfill` es rellenado vertical para cubrir toda la pagina.
+% Cuando hay varios en la página, se reparten el sobrante.
 {\huge \@title \par}
 \vfill
 Grupo 2:\par
 \begin{center}
-{\renewcommand{\and}{\par}\@author}    
+% Lo mismo que centering pero en un bloque.
+{\renewcommand{\and}{\par}\@author}
+% `renewcommand` modifica los comandos.
+% Acá cambio los `and` que hacen una tabla rara
+% por marcas de final de parrafo `par`.
+% Dejo los `and` en `author` porque es lo que se usa.     
 \end{center}
 \vfill
 Práctica entregada:\par
@@ -34,6 +58,7 @@ Docentes:\par
 \end{titlepage}
 
 \renewcommand{\abstractname}{Resumen}
+% Con eso le cambio en titulo del resumen
 \begin{abstract}
 El siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo.
 \end{abstract}
@@ -42,6 +67,7 @@ El siguiente informe tieno por objetivo siguiente informe tieno por objetivo sig
 Dummy text
 
 \subsection*{Otro Tema sin entrada al indice}
+% Fijarse que este tiene *
 Dummy text
 
 \section{Descripción de la Práctica}
@@ -51,6 +77,7 @@ Dummy text
 
 \subsection{Plataforma de Desarrollo}
 Dummy text. Ejemplo de fuente monospace {\ttfamily para un comando} en el medio del párrafo.
+% `ttfamily` pone una fuente monospace. Sin las llaves cambiaria todo en adelante.
 
 \subsection{Instrucción de Compilación y Ejecución}
 Dummy text. Ejemplo de émfasis para una palabra en \textit{inglés} en el medio del párrafo.
@@ -59,6 +86,8 @@ Dummy text. Ejemplo de émfasis para una palabra en \textit{inglés} en el medio
 Dummy text. Como en la Figura \ref{ejemplo-imagen}
 % --- Para insertar una imagen escriban de acá
 \begin{figure}[h]
+% La opcion `[h]` es para "here", pero puede cagarse en eso.
+% No usar "la imagen que sigue" sino la referencia.
     \centering
     \includegraphics[height=1cm]{logo.png}
     \caption{Ejemplo de insertar imagen}
