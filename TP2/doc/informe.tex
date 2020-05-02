@@ -17,6 +17,8 @@
 % `title`, `author` y `date` es informacion que todos los archivos tienen.
 \def\teacher{Ing. Jorge H. Doorn\\Ing. Matías Presso}
 % Con `def` sirve para definir variables.
+\renewcommand{\figurename}{Figura}
+% Con eso cambiamos como salen los titulos de las figuras.
 \begin{document}
 % Arranca el documento
 \begin{titlepage}
@@ -67,7 +69,7 @@ El siguiente informe tieno por objetivo siguiente informe tieno por objetivo sig
 Dummy text
 
 \subsection*{Otro Tema sin entrada al indice}
-% Fijarse que este tiene *
+% Fijarse que este tiene * para que no se numere.
 Dummy text
 
 \section{Descripción de la Práctica}
@@ -84,6 +86,7 @@ Dummy text. Ejemplo de émfasis para una palabra en \textit{inglés} en el medio
 
 \section{Diseño y Simulación}
 Dummy text. Como en la Figura \ref{ejemplo-imagen}
+
 % --- Para insertar una imagen escriban de acá
 \begin{figure}[h]
 % La opcion `[h]` es para "here", pero puede cagarse en eso.
@@ -95,23 +98,33 @@ Dummy text. Como en la Figura \ref{ejemplo-imagen}
 \end{figure}
 \clearpage 
 % --- hasta acá.
-Dummy text
+
+Para referenciar el código en un apéndice decir que está en \ref{codigo}
 
 \section{Conclusiones}
 Dummy text que cita a la obra \ref{referencia}
 
 \section{Referencias}
 \setcounter{secnumdepth}{4}
-\renewcommand{\theparagraph}{[\arabic{paragraph}]}
+% `setcounter` en nivel 4 también cuenta los párrafos definidos con `paragraph`
+\renewcommand{\theparagraph}{\textsuperscript{[\arabic{paragraph}]}}
+% `theparagraph` es la forma en que enumera y referencia los parrafos
+
 % --- Para agregar una referencia simplemente agregar:
 \paragraph{} Autor, Apellido. (Año) "Obra". Editorial, Pais. Recuperado de url\label{referencia}
+% Fijarse que no lleva titulo de parrafo con las llaves {}
 
 \appendix
 \renewcommand\thesection{Apéndice \Alph{section}}
+% `thesection` es como se numera y referencian las secciones, en este caso los apendices
 
-\section{}
+\section{}\label{codigo}
 Ejemplo de como agregar código de otro archivo
 \lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{ejercicio1.c}
+% `lstinputlisting` inserta el codigo.
+% Lo configuro para C, en monospace y tamaño chico, con numeracion a la izquierda.
+% Recordar que el archivo tiene una direccion relativa a esta carpeta.
+% Los de verdad van a estar en la carpeta padre "../ejercicio1.c"
 
 \section{}
 
