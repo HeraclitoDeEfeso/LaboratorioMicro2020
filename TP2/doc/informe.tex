@@ -1,4 +1,3 @@
-% Este es un comentario como en C y los uso para explicarles latex pero pueden no darle bola
 \documentclass{article}
 % Eso define el tipo de documento.
 % `article` se divide en secciones y tiene el resumen pegado al texto
@@ -85,7 +84,7 @@ Dummy text. Ejemplo de fuente monospace {\ttfamily para un comando} en el medio 
 Dummy text. Ejemplo de émfasis para una palabra en \textit{inglés} en el medio del párrafo.
 
 \section{Diseño y Simulación}
-Dummy text. Como en la Figura \ref{ejemplo-imagen}
+Dummy text. Como en la Figura\ref{imagen}
 
 % --- Para insertar una imagen escriban de acá
 \begin{figure}[h]
@@ -94,7 +93,7 @@ Dummy text. Como en la Figura \ref{ejemplo-imagen}
     \centering
     \includegraphics[height=1cm]{logo.png}
     \caption{Ejemplo de insertar imagen}
-    \label{ejemplo-imagen}
+    \label{imagen}
 \end{figure}
 \clearpage 
 % --- hasta acá.
@@ -104,7 +103,10 @@ Para referenciar el código en un apéndice decir que está en \ref{codigo}
 \section{Conclusiones}
 Dummy text que cita a la obra \ref{referencia}
 
-\section{Referencias}
+\noindent\rule{\textwidth}{1pt}
+% Linea horizontal sin identacion y del ancho del texto
+
+\section*{Referencias}
 \setcounter{secnumdepth}{4}
 % `setcounter` en nivel 4 también cuenta los párrafos definidos con `paragraph`
 \renewcommand{\theparagraph}{\textsuperscript{[\arabic{paragraph}]}}
@@ -114,18 +116,25 @@ Dummy text que cita a la obra \ref{referencia}
 \paragraph{} Autor, Apellido. (Año) "Obra". Editorial, Pais. Recuperado de url\label{referencia}
 % Fijarse que no lleva titulo de parrafo con las llaves {}
 
+\newpage
+% Empezar el apéndice en una nueva pagina
+\pagenumbering{gobble}
+% Eliminamos la numeracion de paginas
+
 \appendix
 \renewcommand\thesection{Apéndice \Alph{section}}
 % `thesection` es como se numera y referencian las secciones, en este caso los apendices
 
 \section{}\label{codigo}
 Ejemplo de como agregar código de otro archivo
-\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{ejercicio1.c}
+\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio1.c}
 % `lstinputlisting` inserta el codigo.
 % Lo configuro para C, en monospace y tamaño chico, con numeracion a la izquierda.
 % Recordar que el archivo tiene una direccion relativa a esta carpeta.
 % Los de verdad van a estar en la carpeta padre "../ejercicio1.c"
 
+\newpage
+% Incluir salto de pagina de manera manual.
 \section{}
 
 \end{document}
