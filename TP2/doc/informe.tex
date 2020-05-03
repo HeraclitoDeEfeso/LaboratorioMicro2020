@@ -7,7 +7,7 @@
 % `listings` es para insertar los codigo fuente
 \usepackage[utf8]{inputenc}
 % `utf8` es para no tener problemas con el encoding (acentos, etc.)
-\title{Trabajo Práctico Nro. 1:\\“GPIO en Microcontroladores”}
+\title{Trabajo Práctico Nro. 2:\\“Puertos Analógicos”}
 \author{Amodey, Leandro - leandroamodey@gmail.com
 \and Monti, Matías - matiasmonti@hotmail.com
 \and Quinteros, Fernando - lordfers@gmail.com
@@ -18,6 +18,9 @@
 % Con `def` sirve para definir variables.
 \renewcommand{\figurename}{Figura}
 % Con eso cambiamos como salen los titulos de las figuras.
+\let\originalcite\cite
+\renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
+% Cambiamos el estilo de las citas bibliograficas
 \begin{document}
 % Arranca el documento
 \begin{titlepage}
@@ -61,13 +64,18 @@ Docentes:\par
 \renewcommand{\abstractname}{Resumen}
 % Con eso le cambio en titulo del resumen
 \begin{abstract}
-El siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo siguiente informe tieno por objetivo.
+En el presente trabajo ejemplificaremos mediante diversar aplicaciones 
+la utilización de los módulos analógicos de un microcontrolador. A su 
+vez, éstas ilustrarán la forma en que el diseño digital que en general 
+pertenece al dominio de la corriente contínua y de baja tensión, se 
+relaciona con los componentes electrónicos propios también de la 
+corriente alterna y de mayor tensión.
 \end{abstract}
 
 \section{Introducción}
 Dummy text
 
-\subsection*{Otro Tema sin entrada al indice}
+\subsection*{Tecnologías CMOS y TTL}
 % Fijarse que este tiene * para que no se numere.
 Dummy text
 
@@ -84,7 +92,7 @@ Dummy text. Ejemplo de fuente monospace {\ttfamily para un comando} en el medio 
 Dummy text. Ejemplo de émfasis para una palabra en \textit{inglés} en el medio del párrafo.
 
 \section{Diseño y Simulación}
-Dummy text. Como en la Figura\ref{imagen}
+Dummy text. Como en la Figura \ref{imagen}
 
 % --- Para insertar una imagen escriban de acá
 \begin{figure}[h]
@@ -101,32 +109,37 @@ Dummy text. Como en la Figura\ref{imagen}
 Para referenciar el código en un apéndice decir que está en \ref{codigo}
 
 \section{Conclusiones}
-Dummy text que cita a la obra \ref{referencia}
+Dummy text que cita a la obra \cite{boylestad}
 
 \noindent\rule{\textwidth}{1pt}
 % Linea horizontal sin identacion y del ancho del texto
 
-\section*{Referencias}
-\setcounter{secnumdepth}{4}
-% `setcounter` en nivel 4 también cuenta los párrafos definidos con `paragraph`
-\renewcommand{\theparagraph}{\textsuperscript{[\arabic{paragraph}]}}
-% `theparagraph` es la forma en que enumera y referencia los parrafos
+\renewcommand{\refname}{Referencias}
+% Cambia el titulo de la bibliografia
+\begin{thebibliography}{9}
+% Comienza la bibliografia
+% El "9" indica que el espacio para imprimir "9" es de la mayor referencia
 
-% --- Para agregar una referencia simplemente agregar:
-\paragraph{} Autor, Apellido. (Año) "Obra". Editorial, Pais. Recuperado de url\label{referencia}
-% Fijarse que no lleva titulo de parrafo con las llaves {}
+% Para agregar una entrada a la bibliografia repetir de aca
+\bibitem{boylestad} 
+Boylestad, R. \& Nashelsky, L. (2002). 
+\textit{"Electronic devices and circuit theory"}.
+Upper Saddle River, N.J: Prentice Hall.
+% Hasta aca termina la referencia
+
+\end{thebibliography}
 
 \newpage
+\appendix
 % Empezar el apéndice en una nueva pagina
 \pagenumbering{gobble}
 % Eliminamos la numeracion de paginas
-
-\appendix
 \renewcommand\thesection{Apéndice \Alph{section}}
 % `thesection` es como se numera y referencian las secciones, en este caso los apendices
 
 \section{}\label{codigo}
 Ejemplo de como agregar código de otro archivo
+
 \lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio1.c}
 % `lstinputlisting` inserta el codigo.
 % Lo configuro para C, en monospace y tamaño chico, con numeracion a la izquierda.
