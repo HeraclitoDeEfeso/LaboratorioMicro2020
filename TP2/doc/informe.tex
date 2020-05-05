@@ -7,6 +7,7 @@
 % `listings` es para insertar los codigo fuente
 \usepackage[utf8]{inputenc}
 % `utf8` es para no tener problemas con el encoding (acentos, etc.)
+
 \title{Trabajo Práctico Nro. 2:\\“Puertos Analógicos”}
 \author{Amodey, Leandro - leandroamodey@gmail.com
 \and Monti, Matías - matiasmonti@hotmail.com
@@ -14,6 +15,7 @@
 \and Araneda, Alejandro – eloscurodeefeso@hotmail.com}
 \date{1er. Cuatrimestre 2020\\Lunes, 11 de Mayo, 8hs.}
 % `title`, `author` y `date` es informacion que todos los archivos tienen.
+
 \def\teacher{Ing. Jorge H. Doorn\\Ing. Matías Presso}
 % Con `def` sirve para definir variables.
 \renewcommand{\figurename}{Figura}
@@ -21,12 +23,19 @@
 \let\originalcite\cite
 \renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
 % Cambiamos el estilo de las citas bibliograficas
+\makeatletter
+% Es para usar o cambiar comandos que empiezan con @
+\let\@afterindentfalse\@afterindenttrue
+% Es para cambiar \@afterindentfalse por \@afterindenttrue
+% que controla si se indenta el primer parrafo despues de un titulo
+\makeatother
+  
 \begin{document}
 % Arranca el documento
 \begin{titlepage}
 % Creamos un titulo a medida
 \makeatletter 
-% `makeatletter` es para reemplazar `title`, `author` y `date`
+% `makeatletter` es para usar `\@title`, `\@author` y `\@date`
 \centering
 % centrado
 \includegraphics{logo.png}\par
@@ -43,14 +52,11 @@
 {\huge \@title \par}
 \vfill
 Grupo 2:\par
-\begin{center}
-% Lo mismo que centering pero en un bloque.
 {\renewcommand{\and}{\par}\@author}
 % `renewcommand` modifica los comandos.
 % Acá cambio los `and` que hacen una tabla rara
 % por marcas de final de parrafo `par`.
 % Dejo los `and` en `author` porque es lo que se usa.     
-\end{center}
 \vfill
 Práctica entregada:\par
 \@date
