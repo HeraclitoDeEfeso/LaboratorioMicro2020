@@ -20,15 +20,15 @@
 % Con `def` sirve para definir variables.
 \renewcommand{\figurename}{Figura}
 % Con eso cambiamos como salen los titulos de las figuras.
+\renewcommand{\abstractname}{Resumen}
+% Con eso le cambio en titulo del resumen
+\renewcommand{\refname}{Referencias}
+% Cambia el titulo de la bibliografia
 \let\originalcite\cite
 \renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
 % Cambiamos el estilo de las citas bibliograficas
-\makeatletter
-% Es para usar o cambiar comandos que empiezan con @
-\let\@afterindentfalse\@afterindenttrue
-% Es para cambiar \@afterindentfalse por \@afterindenttrue
-% que controla si se indenta el primer parrafo despues de un titulo
-\makeatother
+\makeatletter\let\@afterindentfalse\@afterindenttrue\makeatother
+% Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
   
 \begin{document}
 % Arranca el documento
@@ -67,8 +67,6 @@ Docentes:\par
 \makeatother
 \end{titlepage}
 
-\renewcommand{\abstractname}{Resumen}
-% Con eso le cambio en titulo del resumen
 \begin{abstract}
 En el presente trabajo ejemplificaremos mediante diversar aplicaciones 
 la utilización de los módulos analógicos de un microcontrolador. A su 
@@ -78,26 +76,26 @@ relaciona con los componentes electrónicos propios también de la
 corriente alterna y de mayor tensión.
 \end{abstract}
 
-\section{Introducción}
+\section*{Introducción}
 Dummy text
 
 \subsection*{Tecnologías CMOS y TTL}
 % Fijarse que este tiene * para que no se numere.
 Dummy text
 
-\section{Descripción de la Práctica}
+\section*{Descripción de la Práctica}
 
-\subsection{Enunciado}
+\subsection*{Enunciado}
 Dummy text
 
-\subsection{Plataforma de Desarrollo}
+\subsection*{Plataforma de Desarrollo}
 Dummy text. Ejemplo de fuente monospace {\ttfamily para un comando} en el medio del párrafo.
 % `ttfamily` pone una fuente monospace. Sin las llaves cambiaria todo en adelante.
 
-\subsection{Instrucción de Compilación y Ejecución}
+\subsection*{Instrucciones de Compilación y Ejecución}
 Dummy text. Ejemplo de émfasis para una palabra en \textit{inglés} en el medio del párrafo.
 
-\section{Diseño y Simulación}
+\section*{Diseño y Simulación}
 Dummy text. Como en la Figura \ref{imagen}
 
 % --- Para insertar una imagen escriban de acá
@@ -114,14 +112,12 @@ Dummy text. Como en la Figura \ref{imagen}
 
 Para referenciar el código en un apéndice decir que está en \ref{codigo}
 
-\section{Conclusiones}
+\section*{Conclusiones}
 Dummy text que cita a la obra \cite{boylestad}
 
 \noindent\rule{\textwidth}{1pt}
 % Linea horizontal sin identacion y del ancho del texto
 
-\renewcommand{\refname}{Referencias}
-% Cambia el titulo de la bibliografia
 \begin{thebibliography}{9}
 % Comienza la bibliografia
 % El "9" indica que el espacio para imprimir "9" es de la mayor referencia
