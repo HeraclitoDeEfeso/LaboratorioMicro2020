@@ -29,7 +29,14 @@
 % Cambiamos el estilo de las citas bibliograficas
 \makeatletter\let\@afterindentfalse\@afterindenttrue\makeatother
 % Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
-  
+\let\originalappendix\appendix
+\renewcommand{\appendix}{%
+\newpage\originalappendix\pagenumbering{gobble}%
+% Empezar apéndices en nueva pagina sin numeracion
+\renewcommand\thesection{Apéndice \Alph{section}}
+% `thesection` es como se numeran los apendices
+}
+
 \begin{document}
 % Arranca el documento
 \begin{titlepage}
@@ -107,7 +114,6 @@ Dummy text. Como en la Figura \ref{imagen}
     \caption{Ejemplo de insertar imagen}
     \label{imagen}
 \end{figure}
-\clearpage 
 % --- hasta acá.
 
 Para referenciar el código en un apéndice decir que está en \ref{codigo}
@@ -131,13 +137,7 @@ Upper Saddle River, N.J: Prentice Hall.
 
 \end{thebibliography}
 
-\newpage
 \appendix
-% Empezar el apéndice en una nueva pagina
-\pagenumbering{gobble}
-% Eliminamos la numeracion de paginas
-\renewcommand\thesection{Apéndice \Alph{section}}
-% `thesection` es como se numera y referencian las secciones, en este caso los apendices
 
 \section{}\label{codigo}
 Ejemplo de como agregar código de otro archivo
@@ -149,7 +149,7 @@ Ejemplo de como agregar código de otro archivo
 % Los de verdad van a estar en la carpeta padre "../ejercicio1.c"
 
 \newpage
-% Incluir salto de pagina de manera manual.
+% Incluir salto de pagina de manera manual en cada apendice.
 \section{}
 
 \end{document}
