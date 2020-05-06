@@ -7,6 +7,8 @@
 % `listings` es para insertar los codigo fuente
 \usepackage[utf8]{inputenc}
 % `utf8` es para no tener problemas con el encoding (acentos, etc.)
+\usepackage{mystyle}
+% Nuestra configuracion
 
 \title{Trabajo Práctico Nro. 2:\\“Puertos Analógicos”}
 \author{Amodey, Leandro - leandroamodey@gmail.com
@@ -18,24 +20,6 @@
 
 \def\teacher{Ing. Jorge H. Doorn\\Ing. Matías Presso}
 % Con `def` sirve para definir variables.
-\renewcommand{\figurename}{Figura}
-% Con eso cambiamos como salen los titulos de las figuras.
-\renewcommand{\abstractname}{Resumen}
-% Con eso le cambio en titulo del resumen
-\renewcommand{\refname}{Referencias}
-% Cambia el titulo de la bibliografia
-\let\originalcite\cite
-\renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
-% Cambiamos el estilo de las citas bibliograficas
-\makeatletter\let\@afterindentfalse\@afterindenttrue\makeatother
-% Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
-\let\originalappendix\appendix
-\renewcommand{\appendix}{%
-\newpage\originalappendix\pagenumbering{gobble}%
-% Empezar apéndices en nueva pagina sin numeracion
-\renewcommand\thesection{Apéndice \Alph{section}}
-% `thesection` es como se numeran los apendices
-}
 
 \begin{document}
 % Arranca el documento
