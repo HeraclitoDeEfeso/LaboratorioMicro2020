@@ -1,0 +1,55 @@
+\ProvidesPackage{untref}[Configuracin de clase article para trabajos practicos de la UnTref]
+% Declara nuestro paquete
+\RequirePackage{graphicx}
+% Requiere graphicx para incluir logo
+\renewcommand{\figurename}{Figura}
+% Con eso cambiamos como salen los titulos de las figuras.
+\renewcommand{\abstractname}{Resumen}
+% Con eso le cambio en titulo del resumen
+\renewcommand{\refname}{Referencias}
+% Cambia el titulo de la bibliografia
+\let\originalcite\cite
+\renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
+% Cambiamos el estilo de las citas bibliograficas
+\let\@afterindentfalse\@afterindenttrue
+% Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
+\let\originalappendix\appendix
+\renewcommand{\appendix}{%
+\newpage\originalappendix\pagenumbering{gobble}%
+% Empezar apéndices en nueva pagina sin numeracion
+\renewcommand\thesection{Apéndice \Alph{section}}
+% `thesection` es como se numeran los apendices
+}
+\newcommand{\teacher}[1]{\gdef\@teacher{#1}}
+% Creamos un comando para cargar el nombre de profesores
+\renewcommand{\maketitle}{%
+% Creamos un titulo a medida
+\begin{titlepage}
+    \centering
+    % centrado
+    \includegraphics{logo.png}\par
+    % incluye el gráfico `par` señala fin de parrafo
+    {\Large Ingeniería en Computación \par}
+    % `Large` es el tamaño de letra, igual que `LARGE` y `huge`. 
+    % Uso llaves {} para que solo valga entre llaves.
+    \vspace{0.5cm}
+    % Espacio vertical
+    {\LARGE Laboratorio de Microprocesadores \par}
+    \vfill
+    % `vfill` es rellenado vertical para cubrir toda la pagina.
+    % Cuando hay varios en la página, se reparten el sobrante.
+    {\huge \@title \par}
+    \vfill
+    Grupo 2:\par
+    {\renewcommand{\and}{\par}\@author}
+    % Cambio los `and` por marcas de final de parrafo `par`.
+    \vfill
+    Práctica entregada:\par
+    \@date
+    \vfill
+    Docentes:\par
+    \@teacher
+    \vspace{1cm}
+    \makeatother
+    \end{titlepage}
+}%

@@ -7,7 +7,7 @@
 % `listings` es para insertar los codigo fuente
 \usepackage[utf8]{inputenc}
 % `utf8` es para no tener problemas con el encoding (acentos, etc.)
-\usepackage{mystyle}
+\usepackage{untref}
 % Nuestra configuracion
 
 \title{Trabajo Práctico Nro. 2:\\“Puertos Analógicos”}
@@ -18,45 +18,13 @@
 \date{1er. Cuatrimestre 2020\\Lunes, 11 de Mayo, 8hs.}
 % `title`, `author` y `date` es informacion que todos los archivos tienen.
 
-\def\teacher{Ing. Jorge H. Doorn\\Ing. Matías Presso}
-% Con `def` sirve para definir variables.
+\teacher{Ing. Jorge H. Doorn\\Ing. Matías Presso}
+% Comando propio para definir profesores.
 
 \begin{document}
 % Arranca el documento
-\begin{titlepage}
-% Creamos un titulo a medida
-\makeatletter 
-% `makeatletter` es para usar `\@title`, `\@author` y `\@date`
-\centering
-% centrado
-\includegraphics{logo.png}\par
-% incluye el gráfico `par` señala fin de parrafo
-{\Large Ingeniería en Computación \par}
-% `Large` es el tamaño de letra, igual que `LARGE` y `huge`. 
-% Uso llaves {} para que solo valga entre llaves.
-\vspace{0.5cm}
-% Espacio vertical
-{\LARGE Laboratorio de Microprocesadores \par}
-\vfill
-% `vfill` es rellenado vertical para cubrir toda la pagina.
-% Cuando hay varios en la página, se reparten el sobrante.
-{\huge \@title \par}
-\vfill
-Grupo 2:\par
-{\renewcommand{\and}{\par}\@author}
-% `renewcommand` modifica los comandos.
-% Acá cambio los `and` que hacen una tabla rara
-% por marcas de final de parrafo `par`.
-% Dejo los `and` en `author` porque es lo que se usa.     
-\vfill
-Práctica entregada:\par
-\@date
-\vfill
-Docentes:\par
-\teacher
-\vspace{1cm}
-\makeatother
-\end{titlepage}
+
+\maketitle
 
 \begin{abstract}
 En el presente trabajo ejemplificaremos mediante diversar aplicaciones 
@@ -68,10 +36,11 @@ corriente alterna y de mayor tensión.
 \end{abstract}
 
 \section*{Introducción}
+% Usamos `section*` porque no hay indice ni queremos numerar
 Dummy text
 
 \subsection*{Tecnologías CMOS y TTL}
-% Fijarse que este tiene * para que no se numere.
+% Fijarse que este también tiene * para que no se numere.
 Dummy text
 
 \section*{Descripción de la Práctica}
