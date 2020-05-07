@@ -2,6 +2,11 @@
 % Declara nuestro paquete
 \RequirePackage{graphicx}
 % Requiere graphicx para incluir logo
+\RequirePackage{caption}
+% Requiere caption para estilo de leyendas
+\captionsetup{labelsep=period,font={small},labelfont=bf,textfont=it}
+% Las leyendas deben ser chicas y en italica, separadas con punto
+% y la numeración en negritas 
 \renewcommand{\figurename}{Figura}
 % Con eso cambiamos como salen los titulos de las figuras.
 \renewcommand{\abstractname}{Resumen}
@@ -15,16 +20,22 @@
 % Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
 \let\originalappendix\appendix
 \renewcommand{\appendix}{%
-\newpage\originalappendix\pagenumbering{gobble}%
-% Empezar apéndices en nueva pagina sin numeracion
-\renewcommand\thesection{Apéndice \Alph{section}}
-% `thesection` es como se numeran los apendices
+    \newpage\originalappendix\pagenumbering{gobble}%
+    % Empezar apéndices en nueva pagina sin numeracion
+    \renewcommand\thesection{Anexo \Alph{section}}
+    % `thesection` es como se numeran los apendices
+    \setcounter{secnumdepth}{1}
+    % Contarlas secciones de apendice
 }
 \newcommand{\teacher}[1]{\gdef\@teacher{#1}}
 % Creamos un comando para cargar el nombre de profesores
+\setcounter{secnumdepth}{0}
+% No se cuentan las secciones pero si estan en el TOC 
 \renewcommand{\maketitle}{%
 % Creamos un titulo a medida
 \begin{titlepage}
+    \renewcommand\and\par
+    % Cambio los `and` por marcas de final de parrafo `par`.
     \centering
     % centrado
     \includegraphics{logo.png}\par
@@ -41,8 +52,7 @@
     {\huge \@title \par}
     \vfill
     Grupo 2:\par
-    {\renewcommand{\and}{\par}\@author}
-    % Cambio los `and` por marcas de final de parrafo `par`.
+    \@author
     \vfill
     Práctica entregada:\par
     \@date
