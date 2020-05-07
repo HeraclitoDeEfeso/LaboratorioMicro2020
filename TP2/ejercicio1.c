@@ -12,22 +12,11 @@
 
 void main()
 {
-    CMCON   = 0x07; // Disable comparators
-    ANSEL   = 0;    // Disable analog signal
-    TRISIO  = 0x3E; // PIN0 output 
+    CMCON   = 0x1D; // Enable comparison A0 > VREF to GP2 
+    ANSEL   = 0x01; // Enable analog signal A0
+    TRISIO  = 0x09; // PIN0 input. Others output 
     GPIO    = 0;    // All output to low
-    
-    while (1)
-    {
-	    if (GP1 == 1)
-	    {
-	        __delay_ms(10);
-            if (GP1 == 1)
-            {
-                GP0 = 1;
-            }
-            while (GP1 == 1);
-            GP0 = 0;
-	    }
-    }
+    VRCON   = 0x8F; // Enable 3.59VREF for 5VDD
+
+    while (1);      
 }
