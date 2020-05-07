@@ -9,7 +9,6 @@
 % `utf8` es para no tener problemas con el encoding (acentos, etc.)
 \usepackage{caption}
 % Para cambiar leyenda de figuras
-\usepackage{untref}
 
 \title{Trabajo Práctico Nro. 2:\\“Puertos Analógicos”}
 \author{Amodey, Leandro - leandroamodey@gmail.com
@@ -19,14 +18,52 @@
 \date{1er. Cuatrimestre 2020\\Lunes, 11 de Mayo, 8hs.}
 % `title`, `author` y `date` es informacion que todos los archivos tienen.
 
-\teacher{Ing. Jorge H. Doorn
+\def\teacher{Ing. Jorge H. Doorn
 \and Ing. Matías Presso}
 % Variable propia para definir profesores.
+
+\captionsetup{labelsep=period,font={small},labelfont=bf,textfont=it}
+% Las leyendas deben ser chicas y en italica, separadas con punto
+% y la numeración en negritas 
+\renewcommand{\figurename}{Figura}
+% Con eso cambiamos como salen los titulos de las figuras.
+\renewcommand{\abstractname}{Resumen}
+% Con eso le cambio en titulo del resumen
+\renewcommand{\refname}{Referencias}
+% Cambia el titulo de la bibliografia
+\let\originalcite\cite
+\renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
+% Cambiamos el estilo de las citas bibliograficas
+\makeatletter\let\@afterindentfalse\@afterindenttrue\makeatother
+% Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
+\let\originalappendix\appendix
+\renewcommand{\appendix}{%
+    \newpage\originalappendix\pagenumbering{gobble}%
+    % Empezar apéndices en nueva pagina sin numeracion
+    \renewcommand\thesection{Anexo \Alph{section}}
+    % `thesection` es como se numeran los apendices
+    \setcounter{secnumdepth}{1}
+    % Contarlas secciones de apendice
+}
+\setcounter{secnumdepth}{0}
+% No se numeran las secciones pero si estan en el TOC 
 
 \begin{document}
 % Arranca el documento
 
-\maketitle
+% Pagina propia de titulo
+\begin{titlepage}\renewcommand\and\par\centering\makeatletter
+    \includegraphics{logo.png}\par
+    {\Large Ingeniería en Computación \par}\vspace{0.5cm}
+    {\LARGE Laboratorio de Microprocesadores \par}\vfill
+    {\huge \@title \par}\vfill
+    Grupo 2:\par
+    \@author\vfill
+    Práctica entregada:\par
+    \@date\vfill
+    Docentes:\par
+    \teacher\vspace{1cm}\makeatother
+\end{titlepage}
 
 \begin{abstract}
 
