@@ -12,9 +12,9 @@
 
 void main()
 {
-    CMCON   = 0x1D; // Enable comparison A0 > VREF to GP2 
-    ANSEL   = 0x01; // Enable analog signal A0
-    TRISIO  = 0x09; // PIN0 input. Others output 
+    CMCON   = 0x1D; // Enable comparison AN0 > VREF to GP2 
+    ANSEL   = 0x01; // Enable analog signal AN0
+    TRISIO  = 0x09; // GP0 input. Others output 
     GPIO    = 0;    // All output to low
     VRCON   = 0x8F; // Enable 3.59VREF for 5VDD
 
