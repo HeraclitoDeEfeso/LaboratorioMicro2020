@@ -47,6 +47,12 @@
 }
 \setcounter{secnumdepth}{0}
 % No se numeran las secciones pero si estan en el TOC 
+\newenvironment{ejercicios}
+    {\setcounter{secnumdepth}{3}
+    \renewcommand\thesubsection{Ejercicio \arabic{subsection}}}
+    {\setcounter{secnumdepth}{0}}
+% Defino un enviroment para numerar ejercicios
+
 
 \begin{document}
 % Arranca el documento
@@ -77,7 +83,7 @@
 
 \end{abstract}
 
-\section{Introducción}\label{sec:teoria}
+\section{Introducción}
 Dummy text
 
 \subsection*{Tecnologías CMOS y TTL}
@@ -96,14 +102,11 @@ La denominación se ha mantenido a pesar de haberse generalizado el
 uso de silicio en vez de metal y otros aislantes en reemplazo del 
 óxido.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=4cm]{transistores.png}
+\begin{figure}[h]\centering
+    \includegraphics[height=3cm]{transistores.png}
     \caption{Integrados con tecnologías CMOS (izquierda) y TTL 
-    (derecha)}
-    \label{fig:transistores}
+    (derecha)}\label{fig:transistores}
 \end{figure}
-% 
 
 Las diferencias entre los transistores de tecnología BJT y los de 
 tecnología FET, vienen dadas por la forma en la que cada tipo de 
@@ -262,22 +265,53 @@ indicamos tanto la frecuencia del reloj y la palabra que representa
 los bits de configuración que debieran ser impresos en la memoria del
 integrado junto con el código ejecutable. 
  
-\section{Diseño y Simulación}\label{sec:practica}
+\section{Diseño y Simulación}
 
-Dummy text. Como en la Figura \ref{imagen}
+\begin{ejercicios}
 
-% --- Para insertar una imagen escriban de acá
-\begin{figure}[h]
-% La opcion `[h]` es para "here", pero puede cagarse en eso.
-% No usar "la imagen que sigue" sino la referencia.
-    \centering
-    \includegraphics[height=1cm]{logo.png}
-    \caption{Ejemplo de insertar imagen}
-    \label{imagen}
-\end{figure}
-% --- hasta acá.
+    \subsection{Monitoreo de una señal analógica}\label{ej:monitoreo}
 
-Para referenciar el código en un apéndice decir que está en \ref{codigo}
+    Para este ejercicio utilizamos el circuito que se ilustra en la
+    Figura \ref{fig:esquematico1}. Consta de un LED conectado a masa 
+    y al pin 5 ó GP2 del microcontrolador más una señal sinusoidal de
+    un hertzio con valores de 0 a 5 voltios de pico a pico 
+    conectada al pin 0 ó AN0. Para facilitar la simulación con el 
+    \textit{software} Proteus, agregamos una punta de prueba sobre la 
+    línea que conduce la señal analógica.
+    
+    Nuestro microcontrolador ya posee los módulos necesarios para 
+    realizar toda la aplicación: un módulo comparador de señales 
+    analógicas con la capacidad de entregar el resultado como señal 
+    digital en el pin GP2 y un módulo generador de un voltaje de 
+    referencia.
+
+    % --- Para insertar una imagen escriban de acá
+    \begin{figure}[h]\centering
+    % La opcion `[h]` es para "here", pero puede cagarse en eso.
+    % No usar "la imagen que sigue" sino la referencia.
+        \includegraphics[height=3cm]{esquematico1.png}
+        \caption{Esquemático del circuito utilizado en el  
+        \ref{ej:monitoreo}}\label{fig:esquematico1}
+    \end{figure}
+    % --- hasta acá.
+
+    El código fuente para este ejercicio es el que se lista en el 
+    \ref{ane:monitoreo}. Vemos que consecuentemente, el mismo sólo
+    consiste en la configuración de los módulos que ya posee el 
+    microcontrolador (líneas 15 a 19) más un ciclo infinito (línea 21).
+
+    Los registros del microcontrolador se configuran de acuerdo a lo 
+    que se indica en su \textit{datasheet}\cite{bid:datasheet}. 
+    Brevemente: se enciende el módulo comparador y se le asigna la
+    señal proveniente del pin AN0 y la del módulo interno de voltaje 
+    de referencia, dirigiendo el resultado al pin GP2 (línea 15); el 
+    voltaje de referencia se ajusta a 3.59 voltios para el caso de un
+    voltaje de operación de 5 voltios (línea 19); y finalmente se 
+    configuran los puertos estableciendo sólo al GP0 ó AN0 como 
+    analógico (línea 16) y única entrada (línea 17), siendo los demás
+    puertos de salida inicializados en cero (línea 18).
+
+\end{ejercicios}
 
 \section{Conclusiones}
 Dummy text que cita a la obra \cite{bib:boylestad}
@@ -306,12 +340,21 @@ Recuperado de https://www.microchip.com/mplab/compilers
 (Versión 8.5 Service Pack 0; Labcenter Electronics: 2016).
 Recuperado de https://www.labcenter.com/
 
+\bibitem{bid:datasheet}
+Microchip (2010).
+\textit{``PIC12F629/675 Data Sheet. 8-Pin FLASH-Based 8-Bit CMOS 
+Microcontrollers''.}
+EE.UU. Recuperado de 
+http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf
 \end{thebibliography}
 
 \appendix
 
-\section{}\label{codigo}
-Ejemplo de como agregar código de otro archivo
+\section{}\label{ane:monitoreo}
+A continuación listamos en extenso el código fuente en lenguaje C
+correspondiente al \ref{ej:monitoreo}. La descripción de su 
+funcionamiento puede encontrarse en la sección de Diseño y 
+Simulación.
 
 \lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio1.c}
 % `lstinputlisting` inserta el codigo.
