@@ -89,7 +89,74 @@
 \end{abstract}
 
 \section{Introducción}
-Dummy text
+
+\subsection*{Características de las entradas A/D}
+    
+\subsubsection*{Comparador Analógico}
+	El PIC12F675 tiene un comparador analógico, y las entradas al
+	comparador se multiplexan con los pines GP0 y GP1.
+	Además, GP2 se puede configurar como salida del comparador.
+	El registro de control del comparador (CMCON) contiene
+	los bits para controlarlo.
+	
+	En la Figura 3 se muestra un solo comparador, junto con
+	la relación entre los niveles E/S análogo-digital:
+	
+	X
+	Figura 3
+	
+	Cuando la entrada analógica en VIN+ es menor a la entrada
+	analógica en VIN-, generará una salida de nivel bajo, pero si VIN+
+	es mayor que VIN-, generará un nivel alto.
+	Para poder utilizar los pines CIN+ y CIN- como entradas analógicas,
+	los bits en el registro CMCON deben ser "11001" (19h).
+	
+	En la Figura 4 se muestra un circuito simplificado para una
+	entrada analógica. Como los pines analógicos están conectados
+	a una salida digital, tienen diodos con polarización inversa a VDD y VSS.
+	La entrada analógica, por lo tanto, debe estar entre VSS y VDD.
+	Si el voltaje de entrada se desvía de este rango en más de 0.6V
+	en cualquier dirección, uno de los diodos está polarizado hacia adelante
+	y puede producirse un bloqueo.
+	Se recomienda una resistencia máxima de 10 kOhm para las fuentes analógicas.
+	Cualquier componente externo conectado a un pin de entrada analógica,
+	como un capacitor o un diodo Zener, debe tener muy poca pérdida de corriente.
+	
+\subsubsection*{Módulo de conversión}
+	Este módulo maneja un formato de conversión de 10 bits. Para el control,
+	hay 2 registros disponibles para controlar las funcionalidades
+	del módulo de conversión analog-to-digital.
+	Además, este módulo se maneja a través de los "bit-comparator" analógicos
+	ANSEL (de 0 a 3) y los bits del TRISIO que controlan el funcionamiento
+	de los pines del mismo (normalmente se utiliza para configurarlo en OUTPUT),
+	y análogamente seteamos el bit ANS correspondiente para deshabilitar el INPUT buffer.
+	
+	• Requisitos de adquisición:
+	Para que el conversor A/D cumpla sus características con precisión, se debe
+	permitir que el CHOLD (Charge HOLDing capacitor), se cargue completamente
+	al nivel de voltaje del INPUT-channel. Para una correcta implementación,
+	hay que analizar las resistencias del RS y RSS para conocer los tiempos
+	en los cuales el CHOLD logre cargarse.
+	(La máxima resistencia recomendada para fuentes analógicas, es de 10kOhm,
+	y a medida que disminuye la resistencia, el tiempo de carga puede disminuir).
+
+	• Operación en tiempo de reposo (SLEEP MODE):
+	El conversor analog-to-digital puede funcionar durante el reposo. Esto requiere que el
+	reloj se configure en el modo de oscilador RC (interno), en el momento de seleccionar el reloj
+	en el modo del oscilador interno, espera una instrucción antes de comenzar la conversión,
+	esto es para que uno pueda ejecutar la instrucción de SLEEP, permitiendo eliminar la mayor parte
+	del ruido generado en el proceso de conversión análoga-digital. Cuando se completa
+	el proceso de conversión, el bit-flag GO/DONE se borra, y el resultado se carga en los registros
+	ADRESH:ADRESL. Si la interrupción A/D está habilitada, el dispositivo deja el modo de reposo generado
+	por la interrupción SLEEP, pero si la interrupción A/D no está habilitada, el módulo A/D se desactiva
+	aunque el bit-flag ADON permanecerá seteado. Algo a tener en cuenta es que, cuando el reloj no es RC,
+	una instrucción SLEEP hará que se cancele la conversión y que el módulo A/D se apague, al igual que
+	en el caso anterior, el bit-flag ADON permanecerá setado.
+	
+	• Efectos en el momento del RESET:
+	Si se realiza un RESET, podemos asegurar que el dispositivo forzará a cambiar el estado de
+	los registros a su estado de RESET, por lo tanto el módulo A/D se apagará, y cualquier conversión
+	pendiente quedará cancelada. Los registros ADRESH:ADRESL no se verán afectados.
 
 \subsection*{Tecnologías CMOS y TTL}
 % Fijarse que este tiene * para que no se numere.
@@ -269,76 +336,6 @@ por el software Proteus para la simulación del circuito. Allí también
 indicamos tanto la frecuencia del reloj y la palabra que representa 
 los bits de configuración que debieran ser impresos en la memoria del
 integrado junto con el código ejecutable. 
-
-\section{Conceptos previos}
-\begin{Conceptos}
-	\subsection{Características de las entradas A/D}\label{ej:monitoreo}
-	{Comparador Analógico:}\label{ej:monitoreo}
-	El PIC12F675 tiene un comparador analógico, y las entradas al
-	comparador se multiplexan con los pines GP0 y GP1.
-	Además, GP2 se puede configurar como salida del comparador.
-	El registro de control del comparador (CMCON) contiene
-	los bits para controlarlo.
-	
-	En la Figura 3 se muestra un solo comparador, junto con
-	la relación entre los niveles E/S análogo-digital:
-	
-	X
-	Figura 3
-	
-	Cuando la entrada analógica en VIN+ es menor a la entrada
-	analógica en VIN-, generará una salida de nivel bajo, pero si VIN+
-	es mayor que VIN-, generará un nivel alto.
-	Para poder utilizar los pines CIN+ y CIN- como entradas analógicas,
-	los bits en el registro CMCON deben ser "11001" (19h).
-	
-	En la Figura 4 se muestra un circuito simplificado para una
-	entrada analógica. Como los pines analógicos están conectados
-	a una salida digital, tienen diodos con polarización inversa a VDD y VSS.
-	La entrada analógica, por lo tanto, debe estar entre VSS y VDD.
-	Si el voltaje de entrada se desvía de este rango en más de 0.6V
-	en cualquier dirección, uno de los diodos está polarizado hacia adelante
-	y puede producirse un bloqueo.
-	Se recomienda una resistencia máxima de 10 kOhm para las fuentes analógicas.
-	Cualquier componente externo conectado a un pin de entrada analógica,
-	como un capacitor o un diodo Zener, debe tener muy poca pérdida de corriente.
-	
-	{Módulo de conversión:}\label{ej:monitoreo}
-	Este módulo maneja un formato de conversión de 10 bits. Para el control,
-	hay 2 registros disponibles para controlar las funcionalidades
-	del módulo de conversión analog-to-digital.
-	Además, este módulo se maneja a través de los "bit-comparator" analógicos
-	ANSEL (de 0 a 3) y los bits del TRISIO que controlan el funcionamiento
-	de los pines del mismo (normalmente se utiliza para configurarlo en OUTPUT),
-	y análogamente seteamos el bit ANS correspondiente para deshabilitar el INPUT buffer.
-	
-	• Requisitos de adquisición:
-	Para que el conversor A/D cumpla sus características con precisión, se debe
-	permitir que el CHOLD (Charge HOLDing capacitor), se cargue completamente
-	al nivel de voltaje del INPUT-channel. Para una correcta implementación,
-	hay que analizar las resistencias del RS y RSS para conocer los tiempos
-	en los cuales el CHOLD logre cargarse.
-	(La máxima resistencia recomendada para fuentes analógicas, es de 10kOhm,
-	y a medida que disminuye la resistencia, el tiempo de carga puede disminuir).
-
-	• Operación en tiempo de reposo (SLEEP MODE):
-	El conversor analog-to-digital puede funcionar durante el reposo. Esto requiere que el
-	reloj se configure en el modo de oscilador RC (interno), en el momento de seleccionar el reloj
-	en el modo del oscilador interno, espera una instrucción antes de comenzar la conversión,
-	esto es para que uno pueda ejecutar la instrucción de SLEEP, permitiendo eliminar la mayor parte
-	del ruido generado en el proceso de conversión análoga-digital. Cuando se completa
-	el proceso de conversión, el bit-flag GO/DONE se borra, y el resultado se carga en los registros
-	ADRESH:ADRESL. Si la interrupción A/D está habilitada, el dispositivo deja el modo de reposo generado
-	por la interrupción SLEEP, pero si la interrupción A/D no está habilitada, el módulo A/D se desactiva
-	aunque el bit-flag ADON permanecerá seteado. Algo a tener en cuenta es que, cuando el reloj no es RC,
-	una instrucción SLEEP hará que se cancele la conversión y que el módulo A/D se apague, al igual que
-	en el caso anterior, el bit-flag ADON permanecerá setado.
-	
-	• Efectos en el momento del RESET:
-	Si se realiza un RESET, podemos asegurar que el dispositivo forzará a cambiar el estado de
-	los registros a su estado de RESET, por lo tanto el módulo A/D se apagará, y cualquier conversión
-	pendiente quedará cancelada. Los registros ADRESH:ADRESL no se verán afectados.
-\end{Conceptos}
 
 \section{Diseño y Simulación}
 
