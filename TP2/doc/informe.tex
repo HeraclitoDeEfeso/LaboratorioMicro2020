@@ -53,6 +53,11 @@
     {\setcounter{secnumdepth}{0}}
 % Defino un enviroment para numerar ejercicios
 
+% Defino un enviroment para numerar Conceptos:
+\newenvironment{Conceptos}
+    {\setcounter{secnumdepth}{1}
+    \renewcommand\thesubsection{Concepto \arabic{subsection}}}
+    {\setcounter{secnumdepth}{0}}
 
 \begin{document}
 % Arranca el documento
