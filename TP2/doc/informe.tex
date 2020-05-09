@@ -54,12 +54,6 @@ labelfont=bf,textfont=it}
     {\setcounter{secnumdepth}{0}}
 % Defino un enviroment para numerar ejercicios
 
-% Defino un enviroment para numerar Conceptos:
-\newenvironment{Conceptos}
-    {\setcounter{secnumdepth}{1}
-    \renewcommand\thesubsection{Concepto \arabic{subsection}}}
-    {\setcounter{secnumdepth}{0}}
-
 \begin{document}
 % Arranca el documento
 
@@ -153,18 +147,11 @@ uso de silicio en vez de metal y otros aislantes en reemplazo del
     (derecha)}\label{fig:transistores}
 \end{figure}
 
-Las diferencias entre los transistores de tecnología BJT y los de 
-tecnología FET, vienen dadas por la forma en la que cada tipo de 
-componente controla el paso de corriente de la terminal colectora a 
-la emisora: mediante los campos magnético inducidos en la unión de 
-materiales dopados con átomos de diferente capacidad de difusión
-de cargas (positivas y negativas), en el caso de los transistores de
-unión bipolar; o mediante un aislante que modifica su característica
-dieléctrica al aplicársele una tensión. En la Figura 
-\ref{fig:transistores} mostramos ejemplos de integrados para ambas 
-tecnologías.
+\subsection*{Principales Diferencias}
 
-A continuación listaremos sus principales diferencias:
+En la Figura \ref{fig:transistores} mostramos ejemplos de integrados 
+para ambas tecnologías y a continuación listaremos sus principales 
+diferencias desde la perspectiva de nuestras aplicaciones a diseñar:
 
 \begin{itemize}
     \item {
@@ -200,16 +187,7 @@ A continuación listaremos sus principales diferencias:
         TTL. Sin embargo, la cantidad de entradas posibles son 
         levemente superiores en estos últimos.
     }
-    \item {
-        Con los TTL encontramos en general implementaciones de puertas
-        NAND, mientras que tanto puertas NAND como NOR son comunes en
-        integrados con transistores del tipo CMOS.
-    }
-    \item {
-        Si bien no es una regla infalible, los integrados con 
-        tecnología TTL suelen indicarse con etiquetas de la serie 
-        7XXX, y los de tecnología CMOS con etiquetas del tipo 4XXX.
-    }
+
 \end{itemize}
 
 \section{Descripción de la Práctica}
