@@ -197,7 +197,6 @@ diferencias desde la perspectiva de nuestras aplicaciones a diseñar:
 \end{itemize}
 
 \subsection*{Dispositivos con corriente considerable o corriente alterna}
-% Fijarse que este tiene * para que no se numere.
 
 La corriente alterna por su alto voltaje puede ser peligrosa y requiere un 
 aislamiento muy superior.No se puede almacenar y puede producir pulsos 
@@ -413,7 +412,26 @@ integrado junto con el código ejecutable.
     las mapea a una tension de VSS = 5v y VDD = 0v. Para poder conectar la etapa reguladora al PIC se debió
     generar un terminal nuevo (VCC5), y luego en las propiedades del PIC mapear VSS al terminal VCC5.
 
+
+    \subsection{Corriente alterna o considerable}\label{ej:Resistor}
+
+    Para este ejercicio utilizamos el circuito que se ilustra en la
+    Figura \ref{fig:esquematico5}. En el cual se agrego un transistor,
+    un motor dc y una bateria que entran en funcionamiento con el switch,
+   es decir, cuando GP1 = 1.
+    
+    \begin{figure}[h]\centering
+
+        \includegraphics[height=3cm]{esquematico5.png}
+        \caption{Esquemático del circuito utilizado en el  
+        \ref{ej:Resistor}}\label{fig:esquematico5}
+    \end{figure}
+
+    El código fuente de esta ejercicio se lista en 
+    \ref{ane:Corriente alterna o considerable}. 
+
 \end{ejercicios}
+
 
 \section{Conclusiones}
 Dummy text que cita a la obra \cite{bib:boylestad}
@@ -448,7 +466,14 @@ Microchip (2010).
 Microcontrollers''.}
 EE.UU. Recuperado de 
 http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf
+
+\bibitem{bid:Transistor}
+\textit{``El transistor''.}
+Recuperado de 
+https://www.ingmecafenix.com/electronica/el-transistor/
+
 \end{thebibliography}
+
 
 \appendix
 
@@ -466,6 +491,10 @@ Simulación.
 
 \newpage
 % Incluir salto de pagina de manera manual en cada apendice.
-\section{}
+\section{}\label{ane:Corriente alterna o considerable}
+A continuación podran ver el  código fuente en lenguaje C correspondiente
+al Ejercicio 3. La descripción de su funcionamiento puede encontrarse en
+la sección de Diseño y Simulación.
 
+\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio3.c}
 \end{document}
