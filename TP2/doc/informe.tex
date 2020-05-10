@@ -87,14 +87,20 @@ labelfont=bf,textfont=it}
 
 \subsection*{Características de los Puertos Analógicos}
 
-En la Figura ?????? se muestra un circuito simplificado para una
-entrada analógica. Como los pines analógicos están conectados
-a una salida digital, tienen diodos con polarización inversa a VDD y VSS.
-La entrada analógica, por lo tanto, debe estar entre VSS y VDD.
+En la Figura \ref{fig:analog-pin} se muestra un circuito simplificado 
+para una entrada analógica. Como los pines analógicos están conectados
+a una salida digital, tienen diodos con polarización inversa a VDD y 
+VSS. La entrada analógica, por lo tanto, debe estar entre VSS y VDD.
+
+\begin{figure}[h]\centering
+    \includegraphics[height=3cm]{informefig4.png}
+    \caption{Ilustración del circuito interno de un puerto analógico}
+    \label{fig:analog-pin}
+\end{figure}
+
 Si el voltaje de entrada se desvía de este rango en más de 0.6V
 en cualquier dirección, uno de los diodos está polarizado hacia adelante
-y puede producirse un bloqueo.
-Se recomienda una resistencia máxima de 10 kOhm para las fuentes analógicas.
+y puede producirse un bloqueo. Se recomienda una resistencia máxima de 10 kOhm para las fuentes analógicas.
 Cualquier componente externo conectado a un pin de entrada analógica,
 como un capacitor o un diodo Zener, debe tener muy poca pérdida de corriente.
 
@@ -105,28 +111,25 @@ comparador se multiplexan con los pines GP0 y GP1.
 Además, GP2 se puede configurar como salida del comparador.
 El registro de control del comparador (CMCON) contiene
 los bits para controlarlo.
-	
-En la Figura ??????? se muestra un solo comparador, junto con
-la relación entre los niveles E/S análogo-digital:
 		
 Cuando la entrada analógica en VIN+ es menor a la entrada
 analógica en VIN-, generará una salida de nivel bajo, pero si VIN+
 es mayor que VIN-, generará un nivel alto.
-Para poder utilizar los pines CIN+ y CIN- como entradas analógicas,
-los bits en el registro CMCON deben ser "11001" (19h).
-Análogamente, se puede trabajar con el comparador
-utilizando AN0 y VREF en lugar de GP0 y GP1, para ésto
-hay que setear los bits en el registro CMCON en "11101" (1D).
+Para poder trabajar con el comparador
+utilizando la entrada analógica AN0 y el voltaje de referencia VREF 
+en lugar de GP0 y GP1, hay que setear los bits en el registro CMCON 
+en {\ttfamily 00011101} o {\ttfamily 1D} en hexadecimal.
 
 \subsubsection*{Módulo Conversor Digital}
 
-Este módulo maneja un formato de conversión de 10 bits. Para el control,
-hay 2 registros disponibles para controlar las funcionalidades
-del módulo de conversión analog-to-digital.
-Además, este módulo se maneja a través de los "bit-comparator" analógicos
-ANSEL (de 0 a 3) y los bits del TRISIO que controlan el funcionamiento
-de los pines del mismo (normalmente se utiliza para configurarlo en OUTPUT),
-y análogamente seteamos el bit ANS correspondiente para deshabilitar el INPUT buffer.
+Este módulo maneja un formato de conversión de 10 bits. Para el 
+control, hay 2 registros disponibles para controlar las 
+funcionalidades del módulo de conversión analog-to-digital. Además, 
+este módulo se maneja a través de los "bit-comparator" analógicos
+ANSEL (de 0 a 3) y los bits del TRISIO que controlan el 
+funcionamiento de los pines del mismo (normalmente se utiliza para 
+configurarlo en OUTPUT), y análogamente seteamos el bit ANS 
+correspondiente para deshabilitar el INPUT buffer.
 	
 \subsection*{Tecnologías CMOS y TTL}
 % Fijarse que este tiene * para que no se numere.
@@ -387,10 +390,17 @@ integrado junto con el código ejecutable.
     puertos de salida inicializados en cero (línea 18).
 
     \subsection{Diseño de fuente reguladora}
+
     En este ejercicio se realizo la etapa de regulación de una fuente con el
     regulador 7805 para estabilizar la tension de entrada a los 5V necesarios para el 
-    funcionamiento del microcontrolador. El mismo puede encontrarse en el 
-    archivo "esquematico4.pdsprj" del repositorio.
+    funcionamiento del microcontrolador. El mismo se muestra en la Figura 
+    \ref{fig:regulador}.
+
+    \begin{figure}[h]\centering
+        \includegraphics[height=4.5cm]{esquematico3.png}
+        \caption{Esquemático del circuito diseñado para la fuente}
+        \label{fig:regulador}
+    \end{figure}
 
     El objetivo de la etapa de regulación es mantener estable la tensión de entrada 
     para evitar inestabilidad en el PIC completo y protegerlo de sobretensiones. Ademas permite 
@@ -402,15 +412,6 @@ integrado junto con el código ejecutable.
     Por otro lado, en el esquemático de Proteus, el PIC no muestra las conexiones de tensión ya que por defecto
     las mapea a una tension de VSS = 5v y VDD = 0v. Para poder conectar la etapa reguladora al PIC se debió
     generar un terminal nuevo (VCC5), y luego en las propiedades del PIC mapear VSS al terminal VCC5.
-
-    \begin{figure}[h]\centering
-    % La opcion `[h]` es para "here", pero puede cagarse en eso.
-    % No usar "la imagen que sigue" sino la referencia.
-        \includegraphics[height=3cm]{esquematico4.png}
-        \caption{Esquemático del circuito diseñado para la fuente}
-    \end{figure}
-
-
 
 \end{ejercicios}
 
