@@ -383,6 +383,32 @@ integrado junto con el código ejecutable.
     analógico (línea 16) y única entrada (línea 17), siendo los demás
     puertos de salida inicializados en cero (línea 18).
 
+    \subsection{Diseño de fuente reguladora}
+    En este ejercicio se realizo la etapa de regulación de una fuente con el
+    regulador 7805 para estabilizar la tension de entrada a los 5V necesarios para el 
+    funcionamiento del microcontrolador. El mismo puede encontrarse en el 
+    archivo "esquematico4_.pdsprj" del repositorio.
+
+    El objetivo de la etapa de regulación es mantener estable la tensión de entrada 
+    para evitar inestabilidad en el PIC completo y protegerlo de sobretensiones. Ademas permite 
+    que la tensión de entrada suministrada por una fuente externa pueda variar, siendo el rango entre 5 y 32 v.
+
+    En el diseño se incluyeron 2 capacitores cerámicos de valor bajo, los cuales garantizan que la carga y 
+    tensión de entrada al regulador sea más precisa según los dispositivos a los que irá conectado.
+
+    Por otro lado, en el esquemático de Proteus, el PIC no muestra las conexiones de tensión ya que por defecto
+    las mapea a una tension de VSS = 5v y VDD = 0v. Para poder conectar la etapa reguladora al PIC se debió
+    generar un terminal nuevo (VCC5), y luego en las propiedades del PIC mapear VSS al terminal VCC5.
+
+    \begin{figure}[h]\centering
+    % La opcion `[h]` es para "here", pero puede cagarse en eso.
+    % No usar "la imagen que sigue" sino la referencia.
+        \includegraphics[height=3cm]{esquematico4.png}
+        \caption{Esquemático del circuito diseñado para la fuente}
+    \end{figure}
+
+
+
 \end{ejercicios}
 
 \section{Conclusiones}
