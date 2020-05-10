@@ -114,7 +114,10 @@ analógica en VIN-, generará una salida de nivel bajo, pero si VIN+
 es mayor que VIN-, generará un nivel alto.
 Para poder utilizar los pines CIN+ y CIN- como entradas analógicas,
 los bits en el registro CMCON deben ser "11001" (19h).
-		
+Análogamente, se puede trabajar con el comparador
+utilizando AN0 y VREF en lugar de GP0 y GP1, para ésto
+hay que setear los bits en el registro CMCON en "11101" (1D).
+
 \subsubsection*{Módulo Conversor Digital}
 
 Este módulo maneja un formato de conversión de 10 bits. Para el control,
