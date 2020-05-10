@@ -85,7 +85,7 @@ labelfont=bf,textfont=it}
 
 \section{Introducción}
 
-\subsection*{Características de las entradas A/D}
+\subsection*{Características de los Puertos Analógicos}
 
 En la Figura ?????? se muestra un circuito simplificado para una
 entrada analógica. Como los pines analógicos están conectados
@@ -98,7 +98,7 @@ Se recomienda una resistencia máxima de 10 kOhm para las fuentes analógicas.
 Cualquier componente externo conectado a un pin de entrada analógica,
 como un capacitor o un diodo Zener, debe tener muy poca pérdida de corriente.
 
-\subsubsection*{Comparador Analógico}
+\subsubsection*{Módulo Comparador Análógico}
 
 El PIC12F675 tiene un comparador analógico, y las entradas al
 comparador se multiplexan con los pines GP0 y GP1.
@@ -115,7 +115,7 @@ es mayor que VIN-, generará un nivel alto.
 Para poder utilizar los pines CIN+ y CIN- como entradas analógicas,
 los bits en el registro CMCON deben ser "11001" (19h).
 		
-\subsubsection*{Módulo de conversión}
+\subsubsection*{Módulo Conversor Digital}
 
 Este módulo maneja un formato de conversión de 10 bits. Para el control,
 hay 2 registros disponibles para controlar las funcionalidades
@@ -147,7 +147,7 @@ uso de silicio en vez de metal y otros aislantes en reemplazo del
     (derecha)}\label{fig:transistores}
 \end{figure}
 
-\subsection*{Principales Diferencias}
+\subsubsection*{Principales Diferencias}
 
 En la Figura \ref{fig:transistores} mostramos ejemplos de integrados 
 para ambas tecnologías y a continuación listaremos sus principales 
