@@ -190,6 +190,55 @@ diferencias desde la perspectiva de nuestras aplicaciones a diseñar:
 
 \end{itemize}
 
+\subsection*{Dispositivos con corriente considerable o corriente alterna}
+% Fijarse que este tiene * para que no se numere.
+
+La corriente alterna por su alto voltaje puede ser peligrosa y requiere un 
+aislamiento muy superior.No se puede almacenar y puede producir pulsos 
+electromagnéticos que afecten a equipos electrónicos sensibles como un radio
+ o celular.
+
+Para evitar que una corriente de alto voltaje dañe los dispositivos podemos
+usar transistores que dependiendo la situacion pueden funcionar como amplificador
+de intensidad o como regulador ya que no permitira que pase mas de cierta cantidad
+corriente.
+
+El transistor cuenta con 3 pines el emisor se encarga de proporcionar las cargas 
+eléctricas, la base controla el flujo de corriente y por ultimo el colector recoge
+las cargas proporcionadas por el emisor. La diferencia de usos entre transistores 
+es que los NPN se utilizan para voltajes positivos y los PNP con voltajes negativos
+
+\begin{figure}[h]\centering
+    \includegraphics[height=3cm]{transistorilustrado.png}
+    \caption{Representacion de un trasistor}\label{fig:transistorilustrado}
+\end{figure}
+
+
+Estos dispositivos tienen 3 estados:
+
+\begin{itemize}
+    \item {
+	Se dice que un transistor entra en estado de corte cuando el voltaje
+	de la base es nulo o menor a 0.6v, ya que que no logra activar el paso
+	de corriente entre el colector y el emisor, es decir se comporta como 
+	un interruptor abierto.
+    }
+    \item {
+        El funcionamiento en el estado de saturacion es el caso contrario a la 
+	de corte, ya que cuando el voltaje que circula por la base supera al 
+	establecido por el fabricante, satura al transistor y este permite la
+	 circulación entre colector y emisor como si fuera un cable normal,
+	 es decir se comporta como un interruptor cerrado.
+    }
+    \item {
+        El estado activo se logra cuando el voltaje de la base esta en un rango
+	intermedio entre la región de saturación y la de corte. 
+	Cuando logramos estabilizar el transistor es capaz de amplificar las 
+	señales de entrada las veces que tenga el valor de ß ya que este 
+	multiplica la corriente del transistor.
+    }    
+\end{itemize}
+
 \section{Descripción de la Práctica}
 
 \subsection{Enunciado}
