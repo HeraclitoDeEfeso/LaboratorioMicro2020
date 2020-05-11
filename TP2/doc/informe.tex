@@ -87,8 +87,8 @@ labelfont=bf,textfont=it}
 
 \subsection*{Características de los Puertos Analógicos}
 
-En la Figura \ref{fig:analog-pin} se muestra un circuito simplificado 
-para una entrada analógica. Como los pines analógicos están conectados
+En la Figura \ref{fig:analog-pin} se muestra un circuito simplificado
+para una entrada analó-gica. Como los pines analógicos están conectados
 a una salida digital, tienen diodos con polarización inversa a VDD y 
 VSS. La entrada analógica, por lo tanto, debe estar entre VSS y VDD.
 
@@ -112,7 +112,15 @@ Además, GP2 se puede configurar como salida del comparador.
 El registro de control del comparador (CMCON) contiene
 los bits para controlarlo.
 		
-Cuando la entrada analógica en VIN+ es menor a la entrada
+\begin{figure}[h]\centering
+    \includegraphics[height=3cm]{informefig3.png}
+    \caption{Resultado del comparador según los niveles de señales}
+    \label{fig:analog-signal}
+\end{figure}
+
+En la Figura \ref{fig:analog-signal} se muestra el resultado de la 
+comparación según el nivel de la señales. Cuando la entrada 
+analógica en VIN+ es menor a la entrada
 analógica en VIN-, generará una salida de nivel bajo, pero si VIN+
 es mayor que VIN-, generará un nivel alto.
 Para poder trabajar con el comparador
@@ -120,7 +128,7 @@ utilizando la entrada analógica AN0 y el voltaje de referencia VREF
 en lugar de GP0 y GP1, hay que setear los bits en el registro CMCON 
 en {\ttfamily 00011101} o {\ttfamily 1D} en hexadecimal.
 
-\subsubsection*{Módulo Conversor Digital}
+\subsubsection*{Módulo Conversor Analógico/Digital}
 
 Este módulo maneja un formato de conversión de 10 bits. Para el 
 control, hay 2 registros disponibles para controlar las 
@@ -130,7 +138,55 @@ ANSEL (de 0 a 3) y los bits del TRISIO que controlan el
 funcionamiento de los pines del mismo (normalmente se utiliza para 
 configurarlo en OUTPUT), y análogamente seteamos el bit ANS 
 correspondiente para deshabilitar el INPUT buffer.
-	
+
+\subsection*{Dispositivos con corriente considerable o corriente alterna}
+
+La corriente alterna por su alto voltaje puede ser peligrosa y requiere un 
+aislamiento muy superior.No se puede almacenar y puede producir pulsos 
+electromagnéticos que afecten a equipos electrónicos sensibles como un radio
+ o celular.
+
+Para evitar que una corriente de alto voltaje dañe los dispositivos podemos
+usar transistores que dependiendo la situacion pueden funcionar como amplificador
+de intensidad o como regulador ya que no permitira que pase mas de cierta cantidad
+corriente.
+
+El transistor cuenta con 3 pines el emisor se encarga de proporcionar las cargas 
+eléctricas, la base controla el flujo de corriente y por ultimo el colector recoge
+las cargas proporcionadas por el emisor. La diferencia de usos entre transistores 
+es que los NPN se utilizan para voltajes positivos y los PNP con voltajes negativos
+
+\begin{figure}[h]\centering
+    \includegraphics[height=3cm]{transistorilustrado.png}
+    \caption{Representacion de un trasistor}\label{fig:transistorilustrado}
+\end{figure}
+
+
+Estos dispositivos tienen 3 estados:
+
+\begin{itemize}
+    \item {
+	Se dice que un transistor entra en estado de corte cuando el voltaje
+	de la base es nulo o menor a 0.6v, ya que que no logra activar el paso
+	de corriente entre el colector y el emisor, es decir se comporta como 
+	un interruptor abierto.
+    }
+    \item {
+        El funcionamiento en el estado de saturacion es el caso contrario a la 
+	de corte, ya que cuando el voltaje que circula por la base supera al 
+	establecido por el fabricante, satura al transistor y este permite la
+	 circulación entre colector y emisor como si fuera un cable normal,
+	 es decir se comporta como un interruptor cerrado.
+    }
+    \item {
+        El estado activo se logra cuando el voltaje de la base esta en un rango
+	intermedio entre la región de saturación y la de corte. 
+	Cuando logramos estabilizar el transistor es capaz de amplificar las 
+	señales de entrada las veces que tenga el valor de ß ya que este 
+	multiplica la corriente del transistor.
+    }    
+\end{itemize}
+
 \subsection*{Tecnologías CMOS y TTL}
 % Fijarse que este tiene * para que no se numere.
 
@@ -196,53 +252,6 @@ diferencias desde la perspectiva de nuestras aplicaciones a diseñar:
 
 \end{itemize}
 
-\subsection*{Dispositivos con corriente considerable o corriente alterna}
-
-La corriente alterna por su alto voltaje puede ser peligrosa y requiere un 
-aislamiento muy superior.No se puede almacenar y puede producir pulsos 
-electromagnéticos que afecten a equipos electrónicos sensibles como un radio
- o celular.
-
-Para evitar que una corriente de alto voltaje dañe los dispositivos podemos
-usar transistores que dependiendo la situacion pueden funcionar como amplificador
-de intensidad o como regulador ya que no permitira que pase mas de cierta cantidad
-corriente.
-
-El transistor cuenta con 3 pines el emisor se encarga de proporcionar las cargas 
-eléctricas, la base controla el flujo de corriente y por ultimo el colector recoge
-las cargas proporcionadas por el emisor. La diferencia de usos entre transistores 
-es que los NPN se utilizan para voltajes positivos y los PNP con voltajes negativos
-
-\begin{figure}[h]\centering
-    \includegraphics[height=3cm]{transistorilustrado.png}
-    \caption{Representacion de un trasistor}\label{fig:transistorilustrado}
-\end{figure}
-
-
-Estos dispositivos tienen 3 estados:
-
-\begin{itemize}
-    \item {
-	Se dice que un transistor entra en estado de corte cuando el voltaje
-	de la base es nulo o menor a 0.6v, ya que que no logra activar el paso
-	de corriente entre el colector y el emisor, es decir se comporta como 
-	un interruptor abierto.
-    }
-    \item {
-        El funcionamiento en el estado de saturacion es el caso contrario a la 
-	de corte, ya que cuando el voltaje que circula por la base supera al 
-	establecido por el fabricante, satura al transistor y este permite la
-	 circulación entre colector y emisor como si fuera un cable normal,
-	 es decir se comporta como un interruptor cerrado.
-    }
-    \item {
-        El estado activo se logra cuando el voltaje de la base esta en un rango
-	intermedio entre la región de saturación y la de corte. 
-	Cuando logramos estabilizar el transistor es capaz de amplificar las 
-	señales de entrada las veces que tenga el valor de ß ya que este 
-	multiplica la corriente del transistor.
-    }    
-\end{itemize}
 
 \section{Descripción de la Práctica}
 
@@ -388,6 +397,30 @@ integrado junto con el código ejecutable.
     analógico (línea 16) y única entrada (línea 17), siendo los demás
     puertos de salida inicializados en cero (línea 18).
 
+    \subsection{Corriente alterna o considerable}\label{ej:Resistor}
+
+    Para este ejercicio modificamos el circuito correspondiente al 
+    ejercicio 3 del anterior Trabajo Práctico 1, como indicaba el 
+    enunciado. Como se aprecia en la Figura \ref{fig:esquematico5},
+    remplazamos, un LED por un motor DC y una batería,
+    los que entran en funcionamiento cuando un transistor es puesto en 
+    estado activo mediante la señal del puerto GP0 del 
+    microcontrolador, señal que a su vez se activa mediante un 
+    switch cuyo estado recibe el puerto GP1.
+    
+    \begin{figure}[h]\centering
+        \includegraphics[height=4.7cm]{esquematico5.png}
+        \caption{Simulación del circuito utilizado en el  
+        \ref{ej:Resistor}}\label{fig:esquematico5}
+    \end{figure}
+
+    El código fuente no ha sido modificado y se lista en el 
+    \ref{ane:Corriente alterna o considerable}.
+    La simulación permite ejemplificar como con apenas 4 miliamperios
+    tomados del microcontrolador, es posible movilizar 400 
+    miliamperios para el funcionamiento del motor, lo que significa
+    para nuestro transistor un factor $\beta$ de 100 unidades.
+
     \subsection{Diseño de fuente reguladora}
 
     En este ejercicio se realizo la etapa de regulación de una fuente con el
@@ -412,29 +445,26 @@ integrado junto con el código ejecutable.
     las mapea a una tension de VSS = 5v y VDD = 0v. Para poder conectar la etapa reguladora al PIC se debió
     generar un terminal nuevo (VCC5), y luego en las propiedades del PIC mapear VSS al terminal VCC5.
 
-
-    \subsection{Corriente alterna o considerable}\label{ej:Resistor}
-
-    Para este ejercicio utilizamos el circuito que se ilustra en la
-    Figura \ref{fig:esquematico5}. En el cual se agrego un transistor,
-    un motor dc y una bateria que entran en funcionamiento con el switch,
-   es decir, cuando GP1 = 1.
-    
-    \begin{figure}[h]\centering
-
-        \includegraphics[height=3cm]{esquematico5.png}
-        \caption{Esquemático del circuito utilizado en el  
-        \ref{ej:Resistor}}\label{fig:esquematico5}
-    \end{figure}
-
-    El código fuente de esta ejercicio se lista en 
-    \ref{ane:Corriente alterna o considerable}. 
-
 \end{ejercicios}
 
 
 \section{Conclusiones}
-Dummy text que cita a la obra \cite{bib:boylestad}
+
+En general, los microcontroladores están destinados a aplicaciones
+específicas que siempre involucran un intercambio con un medio que 
+no es digital. El manejo tanto de señales analógica como de 
+alimentacion de corriente alterna resulta indispensable.
+
+Los transistores son los componentes indispensables para esta 
+interconexión, lo mismo que diversas construcciones como las 
+escaleras de resistencias para la conversion analógica/digital
+o las tecnicas de administración de energía como la modulación
+por pulso (o PWM, por sus siglas en inglés).
+
+Esta práctica brinda un panorama rápido acerca de los componentes
+electró-nicos involucrados, así como la configuración necesaria de 
+los registros y módulos del microcontrolador que han sido destinados
+específicamente para estas aplicaciones.
 
 \noindent\rule{\textwidth}{1pt}
 % Linea horizontal sin identacion y del ancho del texto
@@ -468,7 +498,7 @@ EE.UU. Recuperado de
 http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf
 
 \bibitem{bid:Transistor}
-\textit{``El transistor''.}
+``¿Qué es un transistor y como funciona?'' (2020).
 Recuperado de 
 https://www.ingmecafenix.com/electronica/el-transistor/
 
@@ -493,8 +523,9 @@ Simulación.
 % Incluir salto de pagina de manera manual en cada apendice.
 \section{}\label{ane:Corriente alterna o considerable}
 A continuación podran ver el  código fuente en lenguaje C correspondiente
-al Ejercicio 3. La descripción de su funcionamiento puede encontrarse en
+al \ref{ej:Resistor}. La descripción de su funcionamiento puede encontrarse en
 la sección de Diseño y Simulación.
 
-\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio3.c}
+\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio2.c}
+
 \end{document}
