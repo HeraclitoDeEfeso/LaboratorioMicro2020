@@ -73,17 +73,16 @@ labelfont=bf,textfont=it}
 
 \begin{abstract}
 
-    En el presente trabajo ejemplificaremos mediante diversar 
-    aplicaciones la utilización de los módulos analógicos de un 
-    microcontrolador. A su vez, éstas ilustrarán la forma en que el 
-    diseño digital que en general pertenece al dominio de la 
-    corriente contínua y de baja tensión, se relaciona con los 
-    componentes electrónicos propios también de la corriente alterna 
-    y de mayor tensión.
+    En el presente trabajo realizaremos el análisis y diseño para la implementacion
+    de un sistema que se ocupe del llenado y vaciado de un tanque mediante el uso de 
+    microcontroladores y elementos eléctrìcos y electrónicos.
+    Como entregable del presente trabajo se realizará el presente informe junto con los archivos 
+    del esquemático del sistema, y una simulación del mismo funcionando.
 
 \end{abstract}
 
 \section{Introducción}
+
 
 \subsection*{Características de los Puertos Analógicos}
 
@@ -351,100 +350,24 @@ indicamos tanto la frecuencia del reloj y la palabra que representa
 los bits de configuración que debieran ser impresos en la memoria del
 integrado junto con el código ejecutable. 
 
-\section{Diseño y Simulación}
+\section{Diseño del sistema}
 
 \begin{ejercicios}
 
-    \subsection{Monitoreo de una señal analógica}\label{ej:monitoreo}
+    \subsection{Consideraciones generales}\label{ej:monitoreo}
 
-    Para este ejercicio utilizamos el circuito que se ilustra en la
-    Figura \ref{fig:esquematico1}. Consta de un LED conectado a masa 
-    y al pin 5 ó GP2 del microcontrolador más una señal sinusoidal de
-    un hertzio con valores de 0 a 5 voltios de pico a pico 
-    conectada al pin 0 ó AN0. Para facilitar la simulación con el 
-    \textit{software} Proteus, agregamos una punta de prueba sobre la 
-    línea que conduce la señal analógica.
-    
-    Nuestro microcontrolador ya posee los módulos necesarios para 
-    realizar toda la aplicación: un módulo comparador de señales 
-    analógicas con la capacidad de entregar el resultado como señal 
-    digital en el pin GP2 y un módulo generador de un voltaje de 
-    referencia.
+    Completar
 
     % --- Para insertar una imagen escriban de acá
     \begin{figure}[h]\centering
     % La opcion `[h]` es para "here", pero puede cagarse en eso.
     % No usar "la imagen que sigue" sino la referencia.
-%        \includegraphics[height=3cm]{esquematico1.png}
-        \caption{Esquemático del circuito utilizado en el  
-        \ref{ej:monitoreo}}\label{fig:esquematico1}
+        \includegraphics[height=10cm]{diagrama_sistema.jpg}
+        \caption{Esquema del sistema general.}\label{fig:esquematico1}
     \end{figure}
     % --- hasta acá.
 
-    El código fuente para este ejercicio es el que se lista en el 
-    \ref{ane:monitoreo}. Vemos que consecuentemente, el mismo sólo
-    consiste en la configuración de los módulos que ya posee el 
-    microcontrolador (líneas 15 a 19) más un ciclo infinito (línea 21).
-
-    Los registros del microcontrolador se configuran de acuerdo a lo 
-    que se indica en su \textit{datasheet}\cite{bid:datasheet}. 
-    Brevemente: se enciende el módulo comparador y se le asigna la
-    señal proveniente del pin AN0 y la del módulo interno de voltaje 
-    de referencia, dirigiendo el resultado al pin GP2 (línea 15); el 
-    voltaje de referencia se ajusta a 3.59 voltios para el caso de un
-    voltaje de operación de 5 voltios (línea 19); y finalmente se 
-    configuran los puertos estableciendo sólo al GP0 ó AN0 como 
-    analógico (línea 16) y única entrada (línea 17), siendo los demás
-    puertos de salida inicializados en cero (línea 18).
-
-    \subsection{Corriente alterna o considerable}\label{ej:Resistor}
-
-    Para este ejercicio modificamos el circuito correspondiente al 
-    ejercicio 3 del anterior Trabajo Práctico 1, como indicaba el 
-    enunciado. Como se aprecia en la Figura \ref{fig:esquematico5},
-    remplazamos un LED por un motor DC y una batería,
-    los que entran en funcionamiento cuando un transistor es puesto en 
-    estado activo mediante la señal del puerto GP0 del 
-    microcontrolador, señal que a su vez se activa mediante un 
-    switch cuyo estado recibe el puerto GP1.
     
-    \begin{figure}[h]\centering
-%        \includegraphics[height=4.7cm]{esquematico5.png}
-        \caption{Simulación del circuito utilizado en el  
-        \ref{ej:Resistor}}\label{fig:esquematico5}
-    \end{figure}
-
-    El código fuente no ha sido modificado y se lista en el 
-    \ref{ane:Corriente alterna o considerable}.
-    La simulación permite ejemplificar como con apenas 4 miliamperios
-    tomados del microcontrolador, es posible movilizar 400 
-    miliamperios para el funcionamiento del motor, lo que significa
-    para nuestro transistor un factor $\beta$ de 100 unidades.
-
-    \subsection{Diseño de fuente reguladora}
-
-    En este ejercicio se realizo la etapa de regulación de una fuente con el
-    regulador 7805 para estabilizar la tension de entrada a los 5V necesarios para el 
-    funcionamiento del microcontrolador. El mismo se muestra en la Figura 
-    \ref{fig:regulador}.
-
-    \begin{figure}[h]\centering
-%        \includegraphics[height=4.5cm]{esquematico3.png}
-        \caption{Esquemático del circuito diseñado para la fuente}
-        \label{fig:regulador}
-    \end{figure}
-
-    El objetivo de la etapa de regulación es mantener estable la tensión de entrada 
-    para evitar inestabilidad en el PIC completo y protegerlo de sobretensiones. Ademas permite 
-    que la tensión de entrada suministrada por una fuente externa pueda variar, siendo el rango entre 5 y 32 v.
-
-    En el diseño se incluyeron 2 capacitores cerámicos de valor bajo, los cuales garantizan que la carga y 
-    tensión de entrada al regulador sea más precisa según los dispositivos a los que irá conectado.
-
-    Por otro lado, en el esquemático de Proteus, el PIC no muestra las conexiones de tensión ya que por defecto
-    las mapea a una tension de VSS = 5v y VDD = 0v. Para poder conectar la etapa reguladora al PIC se debió
-    generar un terminal nuevo (VCC5), y luego en las propiedades del PIC mapear VSS al terminal VCC5.
-
 \end{ejercicios}
 
 
