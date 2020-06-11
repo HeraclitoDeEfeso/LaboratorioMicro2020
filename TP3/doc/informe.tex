@@ -59,7 +59,7 @@ labelfont=bf,textfont=it}
 
 % Pagina propia de titulo
 \begin{titlepage}\renewcommand\and\par\centering\makeatletter
-%    \includegraphics{logo.png}\par
+    \includegraphics{logo.png}\par
     {\Large Ingeniería en Computación \par}\vspace{0.5cm}
     {\LARGE Laboratorio de Microprocesadores \par}\vfill
     {\huge \@title \par}\vfill
@@ -84,235 +84,26 @@ labelfont=bf,textfont=it}
 \section{Introducción}
 
 
-\subsection*{Características de los Puertos Analógicos}
-
-En la Figura \ref{fig:analog-pin} se muestra un circuito simplificado
-para una entrada analó-gica. Como los pines analógicos están conectados
-a una salida digital, tienen diodos con polarización inversa a VDD y 
-VSS. La entrada analógica, por lo tanto, debe estar entre VSS y VDD.
-
-\begin{figure}[h]\centering
-%    \includegraphics[height=3cm]{informefig4.png}
-    \caption{Ilustración del circuito interno de un puerto analógico}
-    \label{fig:analog-pin}
-\end{figure}
-
-Si el voltaje de entrada se desvía de este rango en más de 0.6V
-en cualquier dirección, uno de los diodos está polarizado hacia adelante
-y puede producirse un bloqueo. Se recomienda una resistencia máxima de 10 kOhm para las fuentes analógicas.
-Cualquier componente externo conectado a un pin de entrada analógica,
-como un capacitor o un diodo Zener, debe tener muy poca pérdida de corriente.
-
-\subsubsection*{Módulo Comparador Análógico}
-
-El PIC12F675 tiene un comparador analógico, y las entradas al
-comparador se multiplexan con los pines GP0 y GP1.
-Además, GP2 se puede configurar como salida del comparador.
-El registro de control del comparador (CMCON) contiene
-los bits para controlarlo.
-		
-\begin{figure}[h]\centering
-%    \includegraphics[height=4cm]{informefig3.png}
-    \caption{Resultado del comparador según los niveles de señales}
-    \label{fig:analog-signal}
-\end{figure}
-
-En la Figura \ref{fig:analog-signal} se muestra el resultado de la 
-comparación según el nivel de la señales. Cuando la entrada 
-analógica en VIN+ es menor a la entrada
-analógica en VIN-, generará una salida de nivel bajo, pero si VIN+
-es mayor que VIN-, generará un nivel alto.
-Para poder trabajar con el comparador
-utilizando la entrada analógica AN0 y el voltaje de referencia VREF 
-en lugar de GP0 y GP1, hay que setear los bits en el registro CMCON 
-en {\ttfamily 00011101} o {\ttfamily 1D} en hexadecimal.
-
-\subsubsection*{Módulo Conversor Analógico/Digital}
-
-Este módulo maneja un formato de conversión de 10 bits. Para el 
-control, hay 2 registros disponibles para controlar las 
-funcionalidades del módulo de conversión analog-to-digital. Además, 
-este módulo se maneja a través de los "bit-comparator" analógicos
-ANSEL (de 0 a 3) y los bits del TRISIO que controlan el 
-funcionamiento de los pines del mismo (normalmente se utiliza para 
-configurarlo en OUTPUT), y análogamente seteamos el bit ANS 
-correspondiente para deshabilitar el INPUT buffer.
-
-\subsection*{Dispositivos con corriente considerable o corriente alterna}
-
-La corriente alterna por su alto voltaje puede ser peligrosa y requiere un 
-aislamiento muy superior.No se puede almacenar y puede producir pulsos 
-electromagnéticos que afecten a equipos electrónicos sensibles como un radio
- o celular.
-
-Para evitar que una corriente de alto voltaje dañe los dispositivos podemos
-usar transistores que dependiendo la situacion pueden funcionar como amplificador
-de intensidad o como regulador ya que no permitira que pase mas de cierta cantidad
-corriente.
-
-El transistor cuenta con 3 pines el emisor se encarga de proporcionar las cargas 
-eléctricas, la base controla el flujo de corriente y por ultimo el colector recoge
-las cargas proporcionadas por el emisor. La diferencia de usos entre transistores 
-es que los NPN se utilizan para voltajes positivos y los PNP con voltajes negativos
-
-\begin{figure}[h]\centering
-%    \includegraphics[height=3cm]{transistorilustrado.png}
-    \caption{Representacion de un trasistor}\label{fig:transistorilustrado}
-\end{figure}
-
-
-Estos dispositivos tienen 3 estados:
-
-\begin{itemize}
-    \item {
-	Se dice que un transistor entra en estado de corte cuando el voltaje
-	de la base es nulo o menor a 0.6v, ya que que no logra activar el paso
-	de corriente entre el colector y el emisor, es decir se comporta como 
-	un interruptor abierto.
-    }
-    \item {
-        El funcionamiento en el estado de saturacion es el caso contrario a la 
-	de corte, ya que cuando el voltaje que circula por la base supera al 
-	establecido por el fabricante, satura al transistor y este permite la
-	 circulación entre colector y emisor como si fuera un cable normal,
-	 es decir se comporta como un interruptor cerrado.
-    }
-    \item {
-        El estado activo se logra cuando el voltaje de la base esta en un rango
-	intermedio entre la región de saturación y la de corte. 
-	Cuando logramos estabilizar el transistor es capaz de amplificar las 
-	señales de entrada las veces que tenga el valor de $\beta$ ya que este 
-	multiplica la corriente del transistor.
-    }    
-\end{itemize}
-
-\subsection*{Tecnologías CMOS y TTL}
-% Fijarse que este tiene * para que no se numere.
-
-Por tecnología TTL (en inglés, \textit{transistor-transistor logic})
-nos referimos a aquella que utiliza transistores de unión bipolar o 
-BJT (en inglés, \textit{bipolar junction transistor}), para la 
-construcción de circuitos digitales\cite{bib:boylestad}.
-
-En cambio, los CMOS (en inglés, \textit{complementary 
-metal-oxide-semiconduc-tor}) son un tipo de implementación de 
-transistores de efecto de campo de la familia de los MOSFET (en 
-inglés, \textit{metal-oxide-semiconductor field-effect transistor}). 
-La denominación se ha mantenido a pesar de haberse generalizado el 
-uso de silicio en vez de metal y otros aislantes en reemplazo del 
-óxido.
-
-\begin{figure}[h]\centering
-%    \includegraphics[height=3cm]{transistores.png}
-    \caption{Integrados con tecnologías CMOS (izquierda) y TTL 
-    (derecha)}\label{fig:transistores}
-\end{figure}
-
-\subsubsection*{Principales Diferencias}
-
-En la Figura \ref{fig:transistores} mostramos ejemplos de integrados 
-para ambas tecnologías y a continuación listaremos sus principales 
-diferencias desde la perspectiva de nuestras aplicaciones a diseñar:
-
-\begin{itemize}
-    \item {
-        Los integrados desarrollados con CMOS son en general más 
-        costosos que su contraparte TTL.
-    }
-    \item {
-        Los integrados con tecnología TTL son más robustos contra
-        las descargas de estáticas.
-    }
-    \item {
-        La propagación es más rápida en los TTL que en los CMOS. 
-        Estas últimas características hacen que los TTL sigan siendo
-        utilizados.
-    }    
-    \item {
-        La dimensión de los CMOS es mucho menor que la de los TTL.
-    }
-    \item {
-        Al operar con baja corriente, los CMOS tienen menos consumo 
-        que los TTL. Estas últimas características han hecho que los 
-        CMOS se transformaran en los más utilizados en la industria.
-    }
-    \item {
-        Además, los niveles de tensión para los integrados con TTL 
-        rondan los 5 voltios mientras los márgenes para los CMOS son
-        mucho mayores: desde los 3 a los 18 voltios.
-    }
-    \item {
-        La cantidad de salidas que pueden conectarse a un CMOS sin 
-        alterar el correcto funcionamiento (puesto que funcionan con
-        baja corriente) es cinco veces superior a las que permite un 
-        TTL. Sin embargo, la cantidad de entradas posibles son 
-        levemente superiores en estos últimos.
-    }
-
-\end{itemize}
-
-
 \section{Descripción de la Práctica}
 
 \subsection{Enunciado}
 
 A continuación transcribimos el enunciado original de la práctica.
 Del mismo tomamos los puntos teóricos que son descriptos en la 
-Introducción. Los ejercicios prácticos son desarrollados en la sección
-Diseño y Simulación.
+Introducción y fue la base para realizar el diseño detallado en la seccion correspondiente.
 
 \begin{quotation}
 
     \begin{center}
-
-        Laboratorio de Microprocesadores - 2020
         
-        Taller de Microprocesadores Trabajo Practico  2                
+        Taller de Microprocesadores Trabajo Practico  3                
 
     \end{center}
+    \begin{abstract}
+    Diseñar un sistema que permita llenar y vaciar un tanque de líquido con dos bombas independientes. 
 
-    \begin{enumerate}
-
-        \item{
-            Describir brevemente las características de las entradas 
-            analógi-cas del chip. Determine cuantos niveles se pueden 
-            detectar en una entrada analógica y cual es la mínima 
-            variación que se puede detectar.
-            
-            Haga uso de una entrada analógica en el entorno de Proteus,
-            detecte un nivel de amplitud de una señal analógica 
-            conectada a una de las entradas del chip. Puede detectar 
-            si es superior o inferior a cierto valor.
-            
-            Por ejemplo: puede encender un LED cuando el nivel de una 
-            señal analógica supere cierto valor.
-
-            Experimente el uso de instrumentos en el entorno de Proteus.
-
-            Los instrumentos en la simulación serán de mucha utilidad 
-            para verificar el funcionamiento del diseño y del programa. 
-            Encontrará, entre otros, voltímetro, amperímetro, 
-            voltímetro, generador de ondas analógicas, osciloscopio, 
-            etc.
-        }
-        \item{
-            Describa brevemente qué es la tecnología CMOS, qué es la 
-            tecnología TTL y qué las diferencia.
-        }
-        \item{
-            Qué dispostivo/s emplearía para controlar con el 
-            microcontrolador el encendido y apagado de un dispositivo 
-            que funciona a una corriente considerable o que funciona 
-            con corriente alterna. Implemente un circuito en Proteus. 
-            (Puede modificar el circuito realizado para el item 3 del 
-            TP1, para encender una lámpara o un motor).
-        }
-        \item{
-            Diseñe el circuito de alimentación del chip PIC12F675 
-            considerando que tendrá una fuente de alimentación externa 
-            de 9V. La fuente externa es una fuente 220 Vac / 9 Vdc.
-        } 
-    \end{enumerate}
+    El inicio de llenado del tanque debe realizarlo mediante un botón (o señal digital externa ) y deben ingresar 500 lts (o cierto volumen fijo). El vaciado también puede realizarse con un botón o señal digital externa. El llenado no puede realizarse si el tanque esta por encima de cierto nivel, y el vaciado deber finalizar con un nivel mínimo en el tanque para proteger que la bomba no funcione sin líquido. El vaciado no puede en caso que no existe ese nivel mínimo y debe indicarse con una luz que el tanque se encuentra en su mínimo nivel.
+    \end{abstract}
 \end{quotation}
 
 \subsection{Plataforma de Desarrollo}
@@ -352,9 +143,11 @@ integrado junto con el código ejecutable.
 
 \section{Diseño del sistema}
 
-\begin{ejercicios}
+    \subsection{Caso de uso}
 
-    \subsection{Consideraciones generales}\label{ej:monitoreo}
+    Completar
+
+    \subsection{Diagrama de arquitectura}
 
     Completar
 
@@ -362,32 +155,25 @@ integrado junto con el código ejecutable.
     \begin{figure}[h]\centering
     % La opcion `[h]` es para "here", pero puede cagarse en eso.
     % No usar "la imagen que sigue" sino la referencia.
-        \includegraphics[height=10cm]{diagrama_sistema.jpg}
+        \includegraphics[height=12cm]{diagrama_sistema.jpg}
         \caption{Esquema del sistema general.}\label{fig:esquematico1}
     \end{figure}
     % --- hasta acá.
 
-    
-\end{ejercicios}
+    \subsection{Esquemático del circuito.}
 
+    \subsection{Descripción de funcionamiento.}
+
+
+
+    
+\section{Análisis y simulación.}
+
+\subsection{Completar las subsecciones}
 
 \section{Conclusiones}
 
-En general, los microcontroladores están destinados a aplicaciones
-específicas que siempre involucran un intercambio con un medio que 
-no es digital. El manejo tanto de señales analógica como de 
-alimentacion de corriente alterna resulta indispensable.
-
-Los transistores son los componentes indispensables para esta 
-interconexión, lo mismo que diversas construcciones como las 
-escaleras de resistencias para la conversion analógica/digital
-o las tecnicas de administración de energía como la modulación
-por pulso (o PWM, por sus siglas en inglés).
-
-Esta práctica brinda un panorama rápido acerca de los componentes
-electró-nicos involucrados, así como la configuración necesaria de 
-los registros y módulos del microcontrolador que han sido destinados
-específicamente para estas aplicaciones.
+Completar
 
 \noindent\rule{\textwidth}{1pt}
 % Linea horizontal sin identacion y del ancho del texto

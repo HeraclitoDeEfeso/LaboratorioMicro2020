@@ -20,34 +20,34 @@ _TODO_
 
 - [X] Carátula
 - [ ] Resumen
-- [ ] Introducción
+- [X] Introducción
     - [ ] Relé
     - [ ] Optoacoplador
     - [ ] Escalera de resistencias
-- [ ] Descripción de la Práctica
+- [X] Descripción de la Práctica
     - [ ] Enunciado
     - [ ] Entorno de desarrollo
     - [ ] Lista de materiales (costo, datasheet)
-- [ ] Diseño
+- [X] Diseño
     - [ ] Caso de uso (UML)
     - [ ] Diagrama de despliegue/arquitectura de red (UML)
     - [ ] Esquemático de la placa
     - [ ] Control de flujo/flujo de datos (CDFG), diagrama de estados (de corresponder) o sólo descripción textual de la aplicación
-- [ ] Análisis y Simulación
+- [X] Análisis y Simulación
     - [ ] Previamente identificar las acciones en los casos de usos y los estados del sistema ante cada mensaje.
     - [ ] Describir en texto la simulación de cada acción mostrando esquemáticos que reflejen el cambio de estado.
     - [ ] Grabar un video con la simulación y utilizar el texto descriptivo como guión.
-- [ ] Conclusión
+- [X] Conclusión
     - [ ] Expresar brevemente la respuesta al interrogante del resumen o aquello aprendido. 
     - [ ] Apreciación de nuestra aplicación (salvedades, posibles mejoras, comparativa de costos/utilidad con aplicaciones comerciales)
     - [ ] Apreciación sobre el cursado a distancia o virtual. (Opcional)
-- [ ] Referencias
+- [X] Referencias
     - [ ] Relé
     - [ ] Optoacoplador
     - [ ] Escalera de resistencias
     - [ ] Compilador
     - [ ] Datasheet de componentes
-- [ ] Anexos
+- [X] Anexos
     - [ ] Listado del código fuente
     - [ ] Gráficas necesarias para algún parámetro en el datasheet de algún componente. (Opcional)
     - [ ] Plano formal del esquemático. (Opcional)
