@@ -16,7 +16,7 @@ Propuesta de división de tareas:
 
 | Sección | Persona asignada 
 |- |-
-| Introducción |
-| Descripción |
-| Diseño |
-| Simulación |
+| Introducción | Matías
+| Descripción | Alejandro
+| Diseño | Leandro
+| Simulación | Fernando
