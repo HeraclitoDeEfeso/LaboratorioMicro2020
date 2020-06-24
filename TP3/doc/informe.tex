@@ -3,6 +3,8 @@
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
+\usepackage{multirow}
+\usepackage{pdflscape}
 
 \title{Trabajo Práctico Nro. 3:\\``Sistema de llenado\\y vaciado de un tanque''}
 \author{Amodey, Leandro - leandroamodey@gmail.com
@@ -98,26 +100,27 @@ El diseño y simulación del esquemático correspondiente se realiza
 con el software Proteus\cite{bib:simulador} de la compañía 
 Labcenter Electronics.
 
-\subsection{Instrucciones de Compilación y Ejecución}
+\subsection{Listado de componentes}
 
-Para la compilación del firmware utilizamos la línea de comandos en 
-una terminal. Como parámetro a la ejecución del compilador agregamos
-el modelo del microcontrolador donde se instala el software. Éste es 
-el método recomendado por el desarrollador por sobre el de incluir en 
-el código mismo los archivos de encabezado para el preprocesador con 
-las configuraciones específicas del modelo. Por ejemplo, para el 
-primer ejercicio utilizamos:
+A continuación listamos los componentes utilizados en nuestro diseño,
+los cuales fueren elegidos tanto por sus prestaciones adecuadas a la 
+aplicación como por su disponibilidad y costo en el mercado local.
 
-\begin{center}\ttfamily 
-	xc8 --chip=12f675 ejercicio1.c
-\end{center}
-
-El compilador genera un archivo {\ttfamily .hex} que es el que
-agregamos a las propieda-des del microcontrolador solicitadas 
-por el software Proteus para la simulación del circuito. Allí también 
-indicamos tanto la frecuencia del reloj y la palabra que representa 
-los bits de configuración que debieran ser impresos en la memoria del
-integrado junto con el código ejecutable. 
+\begin{landscape}
+    \begin{table}[htbp]
+        \begin{tabular}{|c|c|c|c|c|cccc|c|}
+            \hline
+            \multirow{2}{*}{Descripción}      & \multirow{2}{*}{Marca}   & \multirow{2}{*}{Modelo} & \multicolumn{2}{c|}{Alimentación / Control}                                                                                 & \multicolumn{4}{c|}{Respuesta}                                                                                                                                                                                                                                                                                                & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Precio\\ (pesos)\end{tabular}} \\ \cline{4-5}
+                                              &                          &                         & \begin{tabular}[c]{@{}c@{}}Tensión\\ (voltios)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular} &                                                                                  &                                                                                  &                                                                                            &                                                            &                                                                           \\ \hline
+            \multirow{2}{*}{Bomba periférica} & \multirow{2}{*}{Fluvial} & \multirow{2}{*}{Nero}   & \multirow{2}{*}{220 V}                                      & \multirow{2}{*}{2,4 A}                                        & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Altura\\ (metros)\end{tabular}}   & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Caudal\\ (litros/\\ segundos)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Succión\\ (metros)\end{tabular} & \multirow{2}{*}{\$ 2.700}                                                 \\ \cline{6-9}
+                                              &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{0,37 KW}                                                     & \multicolumn{1}{c|}{32 m}                                                        & \multicolumn{1}{c|}{0,55 l/s}                                                              & 9 m                                                        &                                                                           \\ \hline
+            \multirow{2}{*}{Rele}             & \multirow{2}{*}{Songle}  & \multirow{2}{*}{SRD}    & \multirow{2}{*}{5 V}                                        & \multirow{2}{*}{90 mA}                                        & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}}                                                                                    & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}                                                                      & \multirow{2}{*}{\$ 150}                                                   \\ \cline{6-9}
+                                              &                          &                         &                                                             &                                                               & \multicolumn{2}{c|}{240 V}                                                                                                                                          & \multicolumn{2}{c|}{10 A}                                                                                                                               &                                                                           \\ \hline
+            \multirow{2}{*}{Transistor BJT}   & \multirow{2}{*}{ON}      & \multirow{2}{*}{BC547}  & \multirow{2}{*}{0,6V}                                       & \multirow{2}{*}{1 mA}                                         & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}         & \begin{tabular}[c]{@{}c@{}}Ganancia\\ ó hFE\end{tabular}   & \multirow{2}{*}{\$ 10}                                                    \\ \cline{6-9}
+                                              &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{500 mW}                                                      & \multicolumn{1}{c|}{45 V}                                                        & \multicolumn{1}{c|}{100 mA}                                                                & 110                                                        &                                                                           \\ \hline
+        \end{tabular}
+    \end{table}
+\end{landscape}
 
 \section{Diseño del sistema}
 
@@ -154,18 +157,8 @@ integrado junto con el código ejecutable.
 Completar
 
 \noindent\rule{\textwidth}{1pt}
-% Linea horizontal sin identacion y del ancho del texto
 
 \begin{thebibliography}{9}
-% Comienza la bibliografia
-% El "9" indica que el espacio para imprimir "9" es de la mayor referencia
-
-% Para agregar una entrada a la bibliografia repetir de aca
-\bibitem{bib:boylestad} 
-Boylestad, R. \& Nashelsky, L. (2002). 
-\textit{``Electronic devices and circuit theory"}.
-Upper Saddle River, N.J: Prentice Hall.
-% Hasta aca termina la referencia
 
 \bibitem{bib:compilador}
 \textit{``Microchip MPLAB XC8 C Compiler"}
@@ -184,19 +177,14 @@ Microcontrollers''.}
 EE.UU. Recuperado de 
 http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf
 
-\bibitem{bid:Transistor}
-``¿Qué es un transistor y como funciona?'' (2020).
-Recuperado de 
-https://www.ingmecafenix.com/electronica/el-transistor/
-
 \end{thebibliography}
 
 
 \appendix
 
-\section{}\label{ane:monitoreo}
+\section{}
 A continuación listamos en extenso el código fuente en lenguaje C
-correspondiente al \ref{ej:monitoreo}. La descripción de su 
+correspondiente al . La descripción de su 
 funcionamiento puede encontrarse en la sección de Diseño y 
 Simulación.
 
@@ -208,9 +196,9 @@ Simulación.
 
 \newpage
 % Incluir salto de pagina de manera manual en cada apendice.
-\section{}\label{ane:Corriente alterna o considerable}
+\section{}
 A continuación podran ver el  código fuente en lenguaje C correspondiente
-al \ref{ej:Resistor}. La descripción de su funcionamiento puede encontrarse en
+al . La descripción de su funcionamiento puede encontrarse en
 la sección de Diseño y Simulación.
 
 %\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../ejercicio2.c}
