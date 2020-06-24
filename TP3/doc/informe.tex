@@ -1,14 +1,8 @@
 \documentclass[a4paper]{article}
-% Eso define el tipo de documento.
-% `article` se divide en secciones y tiene el resumen pegado al texto
 \usepackage{graphicx}
-% Son como los import de librerias. `graphicx` es para importar imagenes
 \usepackage{listings}
-% `listings` es para insertar los codigo fuente
 \usepackage[utf8]{inputenc}
-% `utf8` es para no tener problemas con el encoding (acentos, etc.)
 \usepackage{caption}
-% Para cambiar leyenda de figuras
 
 \title{Trabajo Práctico Nro. 3:\\``Sistema de llenado\\y vaciado de un tanque''}
 \author{Amodey, Leandro - leandroamodey@gmail.com
@@ -16,48 +10,28 @@
 \and Quinteros, Fernando - lordfers@gmail.com
 \and Araneda, Alejandro – eloscurodeefeso@hotmail.com}
 \date{1er. Cuatrimestre 2020\\Jueves, 25 de Junio}
-% `title`, `author` y `date` es informacion que todos los archivos tienen.
 
 \def\teacher{Ing. Jorge H. Doorn
 \and Ing. Matías Presso}
-% Variable propia para definir profesores.
 
 \captionsetup{justification=centering,labelsep=period,font={small},%
 labelfont=bf,textfont=it}
-% Las leyendas deben ser chicas y en italica, separadas con punto
-% y la numeración en negritas, todo centrado.
 \renewcommand{\figurename}{Figura}
-% Con eso cambiamos como salen los titulos de las figuras.
 \renewcommand{\abstractname}{Resumen}
-% Con eso le cambio en titulo del resumen
 \renewcommand{\refname}{Referencias}
-% Cambia el titulo de la bibliografia
 \let\originalcite\cite
 \renewcommand{\cite}[2][]{\textsuperscript{\originalcite{#2}}}
-% Cambiamos el estilo de las citas bibliograficas
 \makeatletter\let\@afterindentfalse\@afterindenttrue\makeatother
-% Cambiamos \@afterindentfalse por \@afterindenttrue para indentar primer parrafo
 \let\originalappendix\appendix
 \renewcommand{\appendix}{%
     \newpage\originalappendix\pagenumbering{gobble}%
-    % Empezar apéndices en nueva pagina sin numeracion
     \renewcommand\thesection{Anexo \Alph{section}}
-    % `thesection` es como se numeran los apendices
     \setcounter{secnumdepth}{1}
-    % Contarlas secciones de apendice
 }
 \setcounter{secnumdepth}{0}
-% No se numeran las secciones pero si estan en el TOC 
-\newenvironment{ejercicios}
-    {\setcounter{secnumdepth}{3}
-    \renewcommand\thesubsection{Ejercicio \arabic{subsection}}}
-    {\setcounter{secnumdepth}{0}}
-% Defino un enviroment para numerar ejercicios
 
 \begin{document}
-% Arranca el documento
 
-% Pagina propia de titulo
 \begin{titlepage}\renewcommand\and\par\centering\makeatletter
     \includegraphics{logo.png}\par
     {\Large Ingeniería en Computación \par}\vspace{0.5cm}
@@ -73,52 +47,56 @@ labelfont=bf,textfont=it}
 
 \begin{abstract}
 
-    En el presente trabajo realizaremos el análisis y diseño para la implementacion
-    de un sistema que se ocupe del llenado y vaciado de un tanque mediante el uso de 
-    microcontroladores y elementos eléctrìcos y electrónicos.
-    Como entregable del presente trabajo se realizará el presente informe junto con los archivos 
-    del esquemático del sistema, y una simulación del mismo funcionando.
+    En el presente trabajo realizamos el análisis y diseño de la
+    implementacion de un sistema que se ocupa del llenado y vaciado 
+    de un tanque mediante el uso de microcontroladores y otros 
+    componentes electrónicos.
 
 \end{abstract}
 
 \section{Introducción}
 
-
 \section{Descripción de la Práctica}
 
 \subsection{Enunciado}
 
-A continuación transcribimos el enunciado original de la práctica.
-Del mismo tomamos los puntos teóricos que son descriptos en la 
-Introducción y fue la base para realizar el diseño detallado en la seccion correspondiente.
+A continuación transcribimos el enunciado original de la práctica del
+que se extraen los requerimientos para el desarrollo.
 
 \begin{quotation}
 
-    \begin{center}
-        
-        Taller de Microprocesadores Trabajo Practico  3                
+    \begin{center}\textit{\textbf{%
+        Taller de Microprocesadores: Trabajo Practico N° 3%
+    }}\end{center}\vspace{1em}
 
-    \end{center}
-    \begin{abstract}
-    Diseñar un sistema que permita llenar y vaciar un tanque de líquido con dos bombas independientes. 
+    Diseñar un sistema que permita llenar y vaciar un tanque de líquido 
+    con dos bombas independientes. 
 
-    El inicio de llenado del tanque debe realizarlo mediante un botón (o señal digital externa ) y deben ingresar 500 lts (o cierto volumen fijo). El vaciado también puede realizarse con un botón o señal digital externa. El llenado no puede realizarse si el tanque esta por encima de cierto nivel, y el vaciado deber finalizar con un nivel mínimo en el tanque para proteger que la bomba no funcione sin líquido. El vaciado no puede en caso que no existe ese nivel mínimo y debe indicarse con una luz que el tanque se encuentra en su mínimo nivel.
-    \end{abstract}
+    El inicio de llenado del tanque debe realizarlo mediante un botón 
+    (o señal digital externa ) y deben ingresar 500 lts (o cierto volumen 
+    fijo). El vaciado también puede realizarse con un botón o señal 
+    digital externa. El llenado no puede realizarse si el tanque esta por 
+    encima de cierto nivel, y el vaciado deber finalizar con un nivel 
+    mínimo en el tanque para proteger que la bomba no funcione sin 
+    líquido. El vaciado no puede en caso que no existe ese nivel mínimo y 
+    debe indicarse con una luz que el tanque se encuentra en su mínimo 
+    nivel.
+
 \end{quotation}
 
 \subsection{Plataforma de Desarrollo}
 
-Utilizamos el lenguaje C para programar las aplicaciones. Presentamos
-una copia de los mismos como anexos.
+El microcontrolador es programado utilizando el lenguaje C. 
+Presentamos como anexo una copia del código fuente.
 
-Para nuestro desarrollo utilizamos el compilador MPLAB 
-XC8\cite{bib:compilador} de la empresa Microchips. El mismo es el 
-diseñado específicamente para la línea de microcontroladores de 8 bits
-a la que pertenece el PIC12F675.
+El \textit{firmware} que se implanta en el microcontrolador es  
+producido con el compilador MPLAB XC8\cite{bib:compilador} de la 
+empresa Microchips, diseñado específicamente para la línea de 
+microcontroladores de 8 bits a la que pertenece el PIC12F675.
 
-El diseño y simulación del esquemático correspondiente a cada 
-aplicación se realiza con el software Proteus\cite{bib:simulador} de 
-la compañía Labcenter Electronics.
+El diseño y simulación del esquemático correspondiente se realiza 
+con el software Proteus\cite{bib:simulador} de la compañía 
+Labcenter Electronics.
 
 \subsection{Instrucciones de Compilación y Ejecución}
 
