@@ -5,6 +5,7 @@
 \usepackage{caption}
 \usepackage{multirow}
 \usepackage{pdflscape}
+\usepackage{afterpage}
 
 \title{Trabajo Práctico Nro. 3:\\``Sistema de llenado\\y vaciado de un tanque''}
 \author{Amodey, Leandro - leandroamodey@gmail.com
@@ -83,12 +84,22 @@ conductora.
 Señales digitales: Son variables eléctricas con dos niveles bien 
 diferenciados que se alternan en el tiempo transmitiendo información
  según un código previamente acordado.
+
 Señales analógicas: Son variables eléctricas que evolucionan en el 
 tiempo en forma análoga a alguna variable física.
+
 Utilizaremos un conversor o convertidor digital analógico (DAC) R-2R 
-que suma varias señales digitales binarias de acuerdo al peso de cada 
+como el que se muestra el la Figura \ref{fig:conversor}, que suma 
+varias señales digitales binarias de acuerdo al peso de cada 
 una dando como resultado una señal de corriente o tensión analógica.
- Se llama R-2R por la forma de escalera que tiene el circuito y por 
+
+\begin{figure}[h]\centering
+    \includegraphics[height=4cm]{conversor.png}
+    \caption{convertidor digital analógico (DAC) R-2R}
+    \label{fig:conversor}
+\end{figure}
+
+Se llama R-2R por la forma de escalera que tiene el circuito y por 
 los valores que toman las resistencias R y 2R, gracias a esto al pic 
 ingresa un valor binario el cual luego será utilizado para hacer 
 comparaciones en la lógica del programa, además presenta algunas 
@@ -101,25 +112,32 @@ tienen que ser precisos, sobre todo los de las resistencias de los
 únicamente esos dos valores y tendrán $2^n$ valores analógicos 
 posibles.
 
-\begin{figure}[h]\centering
-    \includegraphics[height=4cm]{conversor.png}
-    \caption{convertidor digital analógico (DAC) R-2R}
-    \label{fig:conversor}
-\end{figure}
-
-En la Figura \ref{fig:conversor} se muestra el circuito del DAC R-2R
-
-
 \subsubsection*{Bombas de Agua}
 
-Una bomba de agua es una máquina hidráulica que permite incrementar la energía cinética de un caudal de agua.
-Las bombas hidráulicas son elementos ampliamente conocidos y empleados en la industria desde antaño, y constituyen toda una rama de la técnica. Existe una gran variedad de bombas, que abarcan un amplio rango de potencias y características hidráulicas.
-Independientemente de sus características o potencia, siempre podemos controlar un equipo de bombeo mediante un procesador, siendo de hecho frecuente que estén controlados por un autómata. Arduino, por supuesto, no es una excepción, y podemos encender cualquier tipo de bomba de agua mediante las salidas digitales y el uso de un MOSFET o una salida por relé.
+Una bomba de agua es una máquina hidráulica que permite incrementar 
+la energía cinética de un caudal de agua. Las bombas hidráulicas son 
+elementos ampliamente conocidos y empleados
+ en la industria desde antaño, y constituyen toda una rama de la 
+ técnica. Existe una gran variedad de bombas, que abarcan un amplio 
+ rango de potencias y características hidráulicas.
+
+Independientemente de sus características o potencia, siempre podemos 
+controlar un equipo de bombeo mediante un procesador, siendo de hecho 
+frecuente que estén controlados por un autómata. Arduino, por 
+supuesto, no es una excepción, y podemos encender cualquier tipo de 
+bomba de agua mediante las salidas digitales y el uso de un MOSFET o 
+una salida por relé.
 
 \subsubsection*{Relé}
 
-Un relé es un interruptor accionado eléctricamente. Muchos relé utilizan un electroimán para operar mecánicamente un interruptor, pero otros principios de funcionamiento también se utilizan los relés de estado sólido. Los relés se utilizan cuando es necesario para controlar un circuito por una señal de baja potencia (con aislamiento eléctrico completo entre el control y los circuitos controlados), o cuando varios circuitos deben ser controlados por una señal.
-
+Un relé es un interruptor accionado eléctricamente. Muchos relé 
+utilizan un electroimán para operar mecánicamente un interruptor, 
+pero otros principios de funcionamiento también se utilizan los 
+relés de estado sólido. Los relés se utilizan cuando es necesario 
+para controlar un circuito por una señal de baja potencia (con 
+aislamiento eléctrico completo entre el control y los circuitos 
+controlados), o cuando varios circuitos deben ser controlados por 
+una señal.
 
 \begin{figure}[h]\centering
     \includegraphics[height=4cm]{rele.png}
@@ -127,12 +145,17 @@ Un relé es un interruptor accionado eléctricamente. Muchos relé utilizan un e
     \label{fig:Rele}
 \end{figure}
 
-En la Figura \ref{fig:Rele} se ve un esquema con el funcionamiento del Relé, al meter corriente por la bobina los contactos abiertos se cierran y los cerrados se abren.
+En la Figura \ref{fig:Rele} se ve un esquema con el funcionamiento 
+del Relé, al meter corriente por la bobina los contactos abiertos 
+se cierran y los cerrados se abren.
 
 \subsubsection*{Optoacoplador}
 
-El propósito principal de un optoacoplador es proteger al circuito de salida frente a picos de voltajes o tensiones elevadas en su entrada que pueden dañar al otro circuito. Un optoacoplador contiene, por lo general, un LED que convierte la señal eléctrica de entrada en luz y un sensor que detecta la luz del LED.
-El optoacoplador cuenta con un emisor y un receptor. El emisor es un led infrarrojo que manda un haz de luz hacia el receptor que normalmente es un fototransistor, cuando este dispositivo capta la señal actúa como un interruptor cerrado y cuando se interrumpe actúa como un interruptor abierto.
+El propósito principal de un optoacoplador es proteger al circuito 
+de salida frente a picos de voltajes o tensiones elevadas en su 
+entrada que pueden dañar al otro circuito. Un optoacoplador 
+contiene, por lo general, un LED que convierte la señal eléctrica 
+de entrada en luz y un sensor que detecta la luz del LED.
 
 \begin{figure}[h]\centering
     \includegraphics[height=4cm]{Optoacoplador.png}
@@ -140,9 +163,34 @@ El optoacoplador cuenta con un emisor y un receptor. El emisor es un led infrarr
     \label{fig:Optoacoplador}
 \end{figure}
 
-En la Figura \ref{fig:Optoacoplador} se muestra como funciona el Optoacoplador en sus dos estados.
+En la Figura \ref{fig:Optoacoplador} se muestra como funciona el 
+Optoacoplador en sus dos estados. Como se observa, el mismo 
+cuenta con un emisor y un receptor. El emisor es 
+un led infrarrojo que manda un haz de luz hacia el receptor que 
+normalmente es un fototransistor, cuando este dispositivo capta 
+la señal actúa como un interruptor cerrado y cuando se interrumpe 
+actúa como un interruptor abierto.
 
 \section{Descripción de la Práctica}
+
+\afterpage{
+\begin{landscape}
+    \begin{table}[p]\centering
+        \begin{tabular}{|c|c|c|c|c|cccc|c|}
+            \hline
+            \multirow{2}{*}{Descripción}      & \multirow{2}{*}{Marca}   & \multirow{2}{*}{Modelo} & \multicolumn{2}{c|}{Alimentación / Control}                                                                                 & \multicolumn{4}{c|}{Respuesta}                                                                                                                                                                                                                                                                                                & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Precio\\ (pesos)\end{tabular}} \\ \cline{4-5}
+                                              &                          &                         & \begin{tabular}[c]{@{}c@{}}Tensión\\ (voltios)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular} &                                                                                  &                                                                                  &                                                                                            &                                                            &                                                                           \\ \hline
+            \multirow{2}{*}{Bomba periférica} & \multirow{2}{*}{Fluvial} & \multirow{2}{*}{Nero}   & \multirow{2}{*}{220 V}                                      & \multirow{2}{*}{2,4 A}                                        & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Altura\\ (metros)\end{tabular}}   & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Caudal\\ (litros/\\ segundos)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Succión\\ (metros)\end{tabular} & \multirow{2}{*}{\$ 2.700}                                                 \\ \cline{6-9}
+                                              &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{0,37 KW}                                                     & \multicolumn{1}{c|}{32 m}                                                        & \multicolumn{1}{c|}{0,55 l/s}                                                              & 9 m                                                        &                                                                           \\ \hline
+            \multirow{2}{*}{Rele}             & \multirow{2}{*}{Songle}  & \multirow{2}{*}{SRD}    & \multirow{2}{*}{5 V}                                        & \multirow{2}{*}{90 mA}                                        & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}}                                                                                    & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}                                                                      & \multirow{2}{*}{\$ 150}                                                   \\ \cline{6-9}
+                                              &                          &                         &                                                             &                                                               & \multicolumn{2}{c|}{240 V}                                                                                                                                          & \multicolumn{2}{c|}{10 A}                                                                                                                               &                                                                           \\ \hline
+            \multirow{2}{*}{Transistor BJT}   & \multirow{2}{*}{ON}      & \multirow{2}{*}{BC547}  & \multirow{2}{*}{0,6V}                                       & \multirow{2}{*}{1 mA}                                         & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}         & \begin{tabular}[c]{@{}c@{}}Ganancia\\ ó hFE\end{tabular}   & \multirow{2}{*}{\$ 10}                                                    \\ \cline{6-9}
+                                              &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{500 mW}                                                      & \multicolumn{1}{c|}{45 V}                                                        & \multicolumn{1}{c|}{100 mA}                                                                & 110                                                        &                                                                           \\ \hline
+        \end{tabular}
+        \caption{Componentes utilizados en el diseño de la aplicación}
+        \label{tab:componentes}
+    \end{table}
+\end{landscape}}
 
 \subsection{Enunciado}
 
@@ -186,55 +234,34 @@ Labcenter Electronics.
 
 \subsection{Listado de componentes}
 
-A continuación listamos los componentes utilizados en nuestro diseño,
-los cuales fueren elegidos tanto por sus prestaciones adecuadas a la 
-aplicación como por su disponibilidad y costo en el mercado local.
-
-\begin{landscape}
-    \begin{table}[htbp]
-        \begin{tabular}{|c|c|c|c|c|cccc|c|}
-            \hline
-            \multirow{2}{*}{Descripción}      & \multirow{2}{*}{Marca}   & \multirow{2}{*}{Modelo} & \multicolumn{2}{c|}{Alimentación / Control}                                                                                 & \multicolumn{4}{c|}{Respuesta}                                                                                                                                                                                                                                                                                                & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Precio\\ (pesos)\end{tabular}} \\ \cline{4-5}
-                                              &                          &                         & \begin{tabular}[c]{@{}c@{}}Tensión\\ (voltios)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular} &                                                                                  &                                                                                  &                                                                                            &                                                            &                                                                           \\ \hline
-            \multirow{2}{*}{Bomba periférica} & \multirow{2}{*}{Fluvial} & \multirow{2}{*}{Nero}   & \multirow{2}{*}{220 V}                                      & \multirow{2}{*}{2,4 A}                                        & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Altura\\ (metros)\end{tabular}}   & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Caudal\\ (litros/\\ segundos)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Succión\\ (metros)\end{tabular} & \multirow{2}{*}{\$ 2.700}                                                 \\ \cline{6-9}
-                                              &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{0,37 KW}                                                     & \multicolumn{1}{c|}{32 m}                                                        & \multicolumn{1}{c|}{0,55 l/s}                                                              & 9 m                                                        &                                                                           \\ \hline
-            \multirow{2}{*}{Rele}             & \multirow{2}{*}{Songle}  & \multirow{2}{*}{SRD}    & \multirow{2}{*}{5 V}                                        & \multirow{2}{*}{90 mA}                                        & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}}                                                                                    & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}                                                                      & \multirow{2}{*}{\$ 150}                                                   \\ \cline{6-9}
-                                              &                          &                         &                                                             &                                                               & \multicolumn{2}{c|}{240 V}                                                                                                                                          & \multicolumn{2}{c|}{10 A}                                                                                                                               &                                                                           \\ \hline
-            \multirow{2}{*}{Transistor BJT}   & \multirow{2}{*}{ON}      & \multirow{2}{*}{BC547}  & \multirow{2}{*}{0,6V}                                       & \multirow{2}{*}{1 mA}                                         & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}         & \begin{tabular}[c]{@{}c@{}}Ganancia\\ ó hFE\end{tabular}   & \multirow{2}{*}{\$ 10}                                                    \\ \cline{6-9}
-                                              &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{500 mW}                                                      & \multicolumn{1}{c|}{45 V}                                                        & \multicolumn{1}{c|}{100 mA}                                                                & 110                                                        &                                                                           \\ \hline
-        \end{tabular}
-    \end{table}
-\end{landscape}
+En la Tabla \ref{tab:componentes} listamos los componentes 
+utilizados en nuestro diseño, los cuales fueren elegidos tanto 
+por sus prestaciones adecuadas a la aplicación como por su 
+disponibilidad y costo en el mercado local.
 
 \section{Diseño del sistema}
 
-    \subsection{Caso de uso}
+\subsection{Caso de uso}
 
-    Completar
+Completar
 
-    \subsection{Diagrama de arquitectura}
+\subsection{Diagrama de arquitectura}
 
-    Completar
+Completar
 
-    % --- Para insertar una imagen escriban de acá
-    \begin{figure}[h]\centering
-    % La opcion `[h]` es para "here", pero puede cagarse en eso.
-    % No usar "la imagen que sigue" sino la referencia.
-        \includegraphics[height=12cm]{diagrama_sistema.jpg}
-        \caption{Esquema del sistema general.}\label{fig:esquematico1}
-    \end{figure}
-    % --- hasta acá.
+\begin{figure}[h]\centering
+    \includegraphics[height=12cm]{diagrama_sistema.jpg}
+    \caption{Esquema del sistema general.}\label{fig:esquematico1}
+\end{figure}
+\clearpage
 
-    \subsection{Esquemático del circuito.}
+\subsection{Esquemático del circuito.}
 
-    \subsection{Descripción de funcionamiento.}
+\subsection{Descripción de funcionamiento.}
 
-
-
-    
 \section{Análisis y simulación.}
 
-\subsection{Completar las subsecciones}
+Completar
 
 \section{Conclusiones}
 
