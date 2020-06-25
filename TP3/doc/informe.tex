@@ -58,21 +58,48 @@ labelfont=bf,textfont=it}
 
 \section{Introducción}
 
-Para este trabajo utilizaremos los conocimientos adquiridos en los trabajos anteriores y otras materias sumando nuevas herramientas las cuales fuimos investigando a medida que realizamos el mismo, a continuación iremos describiendo las que consideremos más importantes.
+Para este trabajo utilizaremos los conocimientos adquiridos en los 
+trabajos anteriores y otras materias sumando nuevas herramientas las
+ cuales fuimos investigando a medida que realizamos el mismo, a
+ continuación iremos describiendo las que consideremos más importantes.
 
 \subsubsection*{Sensor}
 
-En primer lugar como la consigna aclara que tanto para vaciar y llenar el tanque este debe estar entre ciertos niveles de agua debemos contar con una herramienta que nos permita saber la cantidad actual del tanque, para esto utilizaremos un sensor del nivel de agua.
-Este sensor se alimenta a 5V o a 3,3V, el pin S nos dará un valor analógico de manera que usaremos el pin S conectándolo como entrada analógica, el valor que leamos será mayor en función de la superficie del sensor este cubierto de agua. Esto se debe a que el agua se comporta como un conductor, teniendo en cuenta que el agua que usemos en nuestros depósitos no será agua pura (H2O), ya que de por si el agua no es conductora.
+En primer lugar como la consigna aclara que tanto para vaciar y llenar 
+el tanque este debe estar entre ciertos niveles de agua debemos contar 
+con una herramienta que nos permita saber la cantidad actual del tanque,
+ para esto utilizaremos un sensor del nivel de agua.
 
-
+Este sensor se alimenta a 5V o a 3,3V, el pin S nos dará un valor 
+analógico de manera que usaremos el pin S conectándolo como entrada
+ analógica, el valor que leamos será mayor en función de la superficie 
+del sensor este cubierto de agua. Esto se debe a que el agua se comporta 
+como un conductor, teniendo en cuenta que el agua que usemos en nuestros 
+depósitos no será agua pura (H2O), ya que de por si el agua no es 
+conductora.
 
 \subsubsection*{Conversor digital analógico/escalera de resistencias}
 
-Señales digitales: Son variables eléctricas con dos niveles bien diferenciados que se alternan en el tiempo transmitiendo información según un código previamente acordado.
-Señales analógicas: Son variables eléctricas que evolucionan en el tiempo en forma análoga a alguna variable física.
-Utilizaremos un conversor o convertidor digital analógico (DAC) R-2R que suma varias señales digitales binarias de acuerdo al peso de cada una dando como resultado una señal de corriente o tensión analógica. Se llama R-2R por la forma de escalera que tiene el circuito y por los valores que toman las resistencias R y 2R, gracias a esto al pic ingresa un valor binario el cual luego será utilizado para hacer comparaciones en la lógica del programa, además presenta algunas ventajas como la alta velocidad de conversión o el funcionamiento sencillo, mientras que por otro lado los valores de las resistencias tienen que ser precisos, sobre todo los de las resistencias de los bits MSB (Most Significant Bit) además de que son necesarias muchas resistencias. El R-2R brinda un voltaje a la salida que va entre 0 a 5 V si se considerada que las entradas digitales pueden brindar únicamente esos dos valores y tendrán 2^n valores analógicos posibles.
-
+Señales digitales: Son variables eléctricas con dos niveles bien 
+diferenciados que se alternan en el tiempo transmitiendo información
+ según un código previamente acordado.
+Señales analógicas: Son variables eléctricas que evolucionan en el 
+tiempo en forma análoga a alguna variable física.
+Utilizaremos un conversor o convertidor digital analógico (DAC) R-2R 
+que suma varias señales digitales binarias de acuerdo al peso de cada 
+una dando como resultado una señal de corriente o tensión analógica.
+ Se llama R-2R por la forma de escalera que tiene el circuito y por 
+los valores que toman las resistencias R y 2R, gracias a esto al pic 
+ingresa un valor binario el cual luego será utilizado para hacer 
+comparaciones en la lógica del programa, además presenta algunas 
+ventajas como la alta velocidad de conversión o el funcionamiento 
+sencillo, mientras que por otro lado los valores de las resistencias 
+tienen que ser precisos, sobre todo los de las resistencias de los
+ bits MSB (Most Significant Bit) además de que son necesarias muchas
+ resistencias. El R-2R brinda un voltaje a la salida que va entre 0
+ a 5 V si se considerada que las entradas digitales pueden brindar 
+únicamente esos dos valores y tendrán $2^n$ valores analógicos 
+posibles.
 
 \begin{figure}[h]\centering
     \includegraphics[height=4cm]{conversor.png}
