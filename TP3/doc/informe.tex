@@ -175,9 +175,9 @@ actúa como un interruptor abierto.
                                               &                          &                         & \begin{tabular}[c]{@{}c@{}}Tensión\\ (voltios)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular} &                                                                                  &                                                                                  &                                                                                            &                                                            &                                                                           \\ \hline
             \multirow{2}{*}{Bomba periférica} & \multirow{2}{*}{Fluvial} & \multirow{2}{*}{Nero}   & \multirow{2}{*}{220 V}                                      & \multirow{2}{*}{2,4 A}                                        & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Altura\\ (metros)\end{tabular}}   & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Caudal\\ (litros/\\ segundos)\end{tabular}} & \begin{tabular}[c]{@{}c@{}}Succión\\ (metros)\end{tabular} & \multirow{2}{*}{\$ 2.700}                                                 \\ \cline{6-9}
                                               &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{0,37 KW}                                                     & \multicolumn{1}{c|}{32 m}                                                        & \multicolumn{1}{c|}{0,55 l/s}                                                              & 9 m                                                        &                                                                           \\ \hline
-            \multirow{2}{*}{Rele}             & \multirow{2}{*}{Songle}  & \multirow{2}{*}{SRD}    & \multirow{2}{*}{5 V}                                        & \multirow{2}{*}{90 mA}                                        & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}}                                                                                    & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}                                                                      & \multirow{2}{*}{\$ 150}                                                   \\ \cline{6-9}
+            \multirow{2}{*}{Rele}             & \multirow{2}{*}{Songle}  & \multirow{2}{*}{SRD}    & \multirow{2}{*}{12 V}                                        & \multirow{2}{*}{30 mA}                                        & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}}                                                                                    & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}                                                                      & \multirow{2}{*}{\$ 100}                                                   \\ \cline{6-9}
                                               &                          &                         &                                                             &                                                               & \multicolumn{2}{c|}{240 V}                                                                                                                                          & \multicolumn{2}{c|}{10 A}                                                                                                                               &                                                                           \\ \hline
-            \multirow{2}{*}{Transistor BJT}   & \multirow{2}{*}{ON}      & \multirow{2}{*}{BC547}  & \multirow{2}{*}{0,6V}                                       & \multirow{2}{*}{1 mA}                                         & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}         & \begin{tabular}[c]{@{}c@{}}Ganancia\\ ó hFE\end{tabular}   & \multirow{2}{*}{\$ 10}                                                    \\ \cline{6-9}
+            \multirow{2}{*}{Transistor}       & \multirow{2}{*}{ON}      & \multirow{2}{*}{BC547}  & \multirow{2}{*}{0,6V}                                       & \multirow{2}{*}{0,15 mA}                                         & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Potencia\\ (vatios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tension\\ (voltios)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Corriente\\ (amperes)\end{tabular}}         & \begin{tabular}[c]{@{}c@{}}Ganancia\\ ó hFE\end{tabular}   & \multirow{2}{*}{\$ 10}                                                    \\ \cline{6-9}
                                               &                          &                         &                                                             &                                                               & \multicolumn{1}{c|}{500 mW}                                                      & \multicolumn{1}{c|}{45 V}                                                        & \multicolumn{1}{c|}{100 mA}                                                                & 110                                                        &                                                                           \\ \hline
         \end{tabular}
         \caption{Componentes utilizados en el diseño de la aplicación}
@@ -192,27 +192,23 @@ que se extraen los requerimientos para el desarrollo.
 
 \begin{quotation}
 
-    \begin{minipage}{\textwidth}
+    \begin{center}
+        \textit{\textbf{Taller de Microprocesadores: Trabajo 
+        Practico Nro. 3}}
+    \end{center}
 
-        \begin{center}
-            \textit{\textbf{Taller de Microprocesadores: Trabajo 
-            Practico Nro. 3}}
-        \end{center}
+    Diseñar un sistema que permita llenar y vaciar un tanque de líquido 
+    con dos bombas independientes. 
 
-        Diseñar un sistema que permita llenar y vaciar un tanque de líquido 
-        con dos bombas independientes. 
-
-        El inicio de llenado del tanque debe realizarlo mediante un botón 
-        (o señal digital externa ) y deben ingresar 500 lts (o cierto volumen 
-        fijo). El vaciado también puede realizarse con un botón o señal 
-        digital externa. El llenado no puede realizarse si el tanque esta por 
-        encima de cierto nivel, y el vaciado deber finalizar con un nivel 
-        mínimo en el tanque para proteger que la bomba no funcione sin 
-        líquido. El vaciado no puede en caso que no existe ese nivel mínimo y 
-        debe indicarse con una luz que el tanque se encuentra en su mínimo 
-        nivel.
-
-    \end{minipage}
+    El inicio de llenado del tanque debe realizarlo mediante un botón 
+    (o señal digital externa ) y deben ingresar 500 lts (o cierto volumen 
+    fijo). El vaciado también puede realizarse con un botón o señal 
+    digital externa. El llenado no puede realizarse si el tanque esta por 
+    encima de cierto nivel, y el vaciado deber finalizar con un nivel 
+    mínimo en el tanque para proteger que la bomba no funcione sin 
+    líquido. El vaciado no puede en caso que no existe ese nivel mínimo y 
+    debe indicarse con una luz que el tanque se encuentra en su mínimo 
+    nivel.
 
 \end{quotation}
 
@@ -239,31 +235,104 @@ disponibilidad y costo en el mercado local.
 
 \section{Diseño del sistema}
 
-\subsection{Caso de uso}
-
-Completar
-
 \subsection{Diagrama de arquitectura}
 
-Completar
+En la Figura \ref{fig:general} presentamos la topología 
+general de nuestra aplicación. Se puede observa que 
+la misma cubre una extensa geografía desde los sensores 
+sumergidos en el tanque, pasando por la bomba de desagote
+cercana al mismo, la bomba de carga más cercana a la toma,
+y finalmente nuestra placa con las interfaces indicadoras 
+y de accionado. 
 
 \begin{figure}[h]\centering
     \includegraphics[height=12cm]{diagrama_sistema.jpg}
-    \caption{Esquema del sistema general.}\label{fig:esquematico1}
+    \caption{Esquema general del sistema.}\label{fig:general}
 \end{figure}
 %\clearpage
 
+También, del diseño se desprende que conviven señales de 
+disparo como las correspondiente a las órdenes de carga y
+descarga manuales, junto con señales de monitoreo contínuo
+como las del nivel del tanque.
+
+Corresponde aquí que hagamos notar los desafíos que ya 
+plantea este desarrollo: el multiplexado de las diferentes
+señales de entrada correspondientes a niveles de agua, y 
+la exigencia de trabajo de las señales que activan tanto el
+llenado como el vaciado.
+
 \subsection{Esquemático del circuito.}
 
-\subsection{Descripción de funcionamiento.}
+El esquemático de nuestro circuito se presenta en la Figura
+\ref{fig:esquematico} con las libertades en cuanto a las
+posibilidades de simulación y prueba de los componentes 
+activos.
 
-\section{Análisis y simulación.}
+En un principio vemos las indicaciones lumínicas y mandos 
+con botones que ya desarrollamos en nuestros trabajos 
+anteriores. También proveniente de nuestros desarrollos
+pasados, contamos con una fuente de alimentación de 12 
+voltios a la que agregamos un regulador a 5 voltios para el 
+microcontrolador.
+
+\begin{figure}[h]\centering
+    \includegraphics[height=9cm]{tp3.jpg}
+    \caption{Esquemático del circuito electrónico.}
+    \label{fig:esquematico}
+\end{figure}
+
+La disponibilidad de ambas tensiones de alimentación es 
+muy conveniente para abordar la solución al problema de 
+la exigencia de trabajo, es decir, el circuito de salida 
+que va del microcontrolador, pasando por los transistores
+amplificadores de corriente, activando los relé que
+finalmente sostienen la carga de corriente alterna 
+directa de los tomas. 
+
+Trabajar con el relé a 12 voltios nos permite reducir 
+su demanda de corriente, si lo comparamos con los casi 
+100 miliamperes que nos exigiría un relé de 5 voltios. 
+Las prestaciones de un transistor BC547 son más que 
+suficientes para amplificar en saturación una corriente
+demandada al microcontrolador de menos de 300 
+microamperes, cumpliendo con las especificaciones del
+fabricante\cite{bib:datasheet}.
+
+Finalmente, como se indicó en la Introducción, el método
+más eficáz para la implementación de un conversor 
+analógico digital que nos permita además multiplexar las
+entradas al microcontrolador, es la escalera de 
+resistencias del tipo ``R-R2'' que utilizamos con los 
+sensores de nivel de agua.
+
+\section{Análisis de funcionamiento.}
 
 Completar
 
 \section{Conclusiones}
 
-Completar
+Nuestro trabajo ha abordado una cantidad de temáticas 
+electrónicas, especialmente las referidas a la vinculación
+de componentes analógicos con los digitales.
+
+En muchos casos estas soluciones se realizaban a través 
+de integrados con componentes activos como
+diodos y transistores. Hoy, la baratura alcanzada por 
+la reducción del costo de área de la electrónica digital
+hace posible utilizar microcontroladores que agregan un
+grado mayor de versatilidad a nuestros diseños.
+
+Queremos hacer notar aquí también lo que ha sido nuestra 
+experiencia en el cursado a distancia de una materia de
+práctica de laboratorio. Si bien los simuladores no pueden
+abarcar la cantidad de variables que intervienen en el 
+funcionamiento de un circuito real, sentimos muy 
+satisfactoria nuestra experiencia con el software 
+presentado por la cátedra, lo mismo que el entrenamiento 
+que la carrera nos ha dado en el uso de herramientas de 
+trabajo en equipo como el uso de control de versiones, 
+teleconferencias, etc.
 
 \noindent\rule{\textwidth}{1pt}
 
@@ -279,7 +348,7 @@ Recuperado de https://www.microchip.com/mplab/compilers
 (Versión 8.5 Service Pack 0; Labcenter Electronics: 2016).
 Recuperado de https://www.labcenter.com/
 
-\bibitem{bid:datasheet}
+\bibitem{bib:datasheet}
 Microchip (2010).
 \textit{``PIC12F629/675 Data Sheet. 8-Pin FLASH-Based 8-Bit CMOS 
 Microcontrollers''.}
