@@ -12,7 +12,7 @@
 \and Monti, Matías - matiasmonti@hotmail.com
 \and Quinteros, Fernando - lordfers@gmail.com
 \and Araneda, Alejandro – eloscurodeefeso@hotmail.com}
-\date{1er. Cuatrimestre 2020\\Jueves, 25 de Junio}
+\date{1er. Cuatrimestre 2020\\Jueves, 26 de Junio, 11hs.}
 
 \def\teacher{Ing. Jorge H. Doorn
 \and Ing. Matías Presso}
@@ -232,10 +232,14 @@ Labcenter Electronics.
 
 \subsection{Listado de componentes}
 
-En la Tabla \ref{tab:componentes} listamos los componentes 
+En la Tabla \ref{tab:componentes} figuran los componentes 
 utilizados en nuestro diseño, los cuales fueren elegidos tanto 
 por sus prestaciones adecuadas a la aplicación como por su 
 disponibilidad y costo en el mercado local.
+
+Se dejan de lado los componentes pasivos como capacitores y 
+resistores, los que de todas forman se indicaran en el esquemático
+con sus respectivos valores.
 
 \section{Diseño del sistema}
 
@@ -275,13 +279,13 @@ activos.
 
 En un principio vemos las indicaciones lumínicas y mandos 
 con botones que ya desarrollamos en nuestros trabajos 
-anteriores. También proveniente de nuestros desarrollos
-pasados, contamos con una fuente de alimentación de 12 
+anteriores. También proveniente de nuestras prácticas
+pasadas, contamos con una fuente de alimentación de 12 
 voltios a la que agregamos un regulador a 5 voltios para el 
 microcontrolador.
 
 \begin{figure}[h]\centering
-    \includegraphics[height=9cm]{tp3.jpg}
+    \includegraphics[width=\textwidth]{tp3.jpg}
     \caption{Esquemático del circuito electrónico.}
     \label{fig:esquematico}
 \end{figure}
@@ -289,19 +293,19 @@ microcontrolador.
 La disponibilidad de ambas tensiones de alimentación es 
 muy conveniente para abordar la solución al problema de 
 la exigencia de trabajo, es decir, el circuito de salida 
-que va del microcontrolador, pasando por los transistores
-amplificadores de corriente, activando los relé que
-finalmente sostienen la carga de corriente alterna 
-directa de los tomas. 
+que va desde el microcontrolador, pasando por los 
+transistores que amplifican la corriente, y llega hasta 
+los relé que finalmente sostienen la carga de corriente 
+alterna directa de los tomas. 
 
 Trabajar con el relé a 12 voltios nos permite reducir 
 su demanda de corriente, si lo comparamos con los casi 
 100 mili amperes que nos exigiría un relé de 5 voltios. 
 Las prestaciones de un transistor BC547 son más que 
-suficientes para amplificar en saturación una corriente
-demandada al microcontrolador de menos de 300 
-micro amperes, cumpliendo con las especificaciones del
-fabricante\cite{bib:datasheet}.
+suficientes para amplificar, en saturación, una corriente
+de menos de 300 micro amperes que es demandada al 
+microcontrolador, cumpliendo así con las especificaciones 
+del fabricante\cite{bib:datasheet}.
 
 Finalmente, como se indicó en la Introducción, el método
 más eficaz para la implementación de un conversor 
@@ -312,7 +316,23 @@ sensores de nivel de agua.
 
 \section{Análisis de funcionamiento.}
 
-Completar
+El firmware para nuestra aplicación, tiene como es 
+habitual la forma de un ciclo infinito de espera para 
+las señales disparadoras de los comandos de llenado y de 
+vaciado del tanque (líneas de la 25 al final).
+
+Ambas señales se testean doblemente en función de falsos
+contactos (líneas 27 y 30 para el llenado, líneas 42 y 45 
+para el vaciado). Una vez confirmado el comando, se activa
+el circuito de fuerza (líneas 32 y 50, respectivamente) 
+hasta que el monitoreo del módulo de conversión analógico 
+digital que ya posee el microcontrolador, alcance los 
+valores de referencia (líneas 34 y 53).
+
+Como ha sido requerido para proteger la bomba, el comando
+de vaciado no solamente se prohibe a partir de un nivel
+límite, sino que además se informa la situación al usuario
+con una señal luminosa (líneas 57 a 59).
 
 \section{Conclusiones}
 
@@ -365,15 +385,11 @@ http://ww1.microchip.com/downloads/en/DeviceDoc/41190G.pdf
 \appendix
 
 \section{}
-A continuación listamos en extenso el código fuente en lenguaje C
-correspondiente al \textit{firmware} impreso en el microcontrolador.
-Su explicación puede encontrarse en la sección de Análisis de 
-funcionamiento.
+A continuación listamos en extenso el código fuente en lenguaje 
+C correspondiente al \textit{firmware} impreso en el 
+microcontrolador. Su explicación se encuentra en la sección de 
+Análisis de funcionamiento.
 
-\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../src/programa3.c}
-% `lstinputlisting` inserta el codigo.
-% Lo configuro para C, en monospace y tamaño chico, con numeracion a la izquierda.
-% Recordar que el archivo tiene una direccion relativa a esta carpeta.
-% Los de verdad van a estar en la carpeta padre "../src/ejercicio1.c"
+\lstinputlisting[language=C,basicstyle=\ttfamily\scriptsize,numbers=left]{../src/firmware.c}
 
 \end{document}
