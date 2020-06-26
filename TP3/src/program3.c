@@ -16,8 +16,8 @@ unsigned int GetADCValue()
 	GO_nDONE = 1;	// Enable Go/Done
 	//NOP();
 	while(GO_nDONE);// Wait for conversion completion
-	//return ADRESH;
-	return ((ADRESH << 8) + ADRESL); // Return 10 bit ADC value
+	return ADRESH;
+	//return ((ADRESH << 8) + ADRESL); no necesitamos precisión
 }
 
 void main()
@@ -49,20 +49,15 @@ void main()
 			if (GP5 == 1)
 			{
 				GP1 = 1;
-			}
-			
-			while (GP5 == 1) //Llenando.
-			{
+				
 				sensor_value = GetADCValue();
-				if (sensor_value > 850) //1024 max.
+				while (sensor_value < 128) //Llenando.
 				{
-					__delay_ms(10);
-					if (sensor_value > 850)
-					{
-						GP1 = 0;
-						GP5 = 0;
-					}
+					sensor_value = GetADCValue();
 				}
+				
+				GP1 = 0;
+				GP5 = 0;
 			}
 		}
 		else if (GP3 == 1)
@@ -70,18 +65,27 @@ void main()
 			__delay_ms(10);
 			if (GP3 == 1)
 			{
-				GP0 = ~GP0;
-			}
-			
-			while (GP3 == 1) //Vaciando.
-			{
+				GP0 = 1;
+				
 				sensor_value = GetADCValue();
-				if (sensor_value < 450) //1.877/4.37967*1024 ~= 439
+				while (sensor_value > 32) //Vaciando.
 				{
-					GP0 = 0;
-					GP3 = 0;
+					sensor_value = GetADCValue();
 				}
+				
+				GP0 = 0;
+				GP3 = 0;
 			}
 		}
 	}
 }
+
+/*void __interrupt () interrup_handler (void)
+{
+       if (ADIF)
+       {
+            GetADCValue();
+            ADIF = 0;
+       }
+
+}*/
