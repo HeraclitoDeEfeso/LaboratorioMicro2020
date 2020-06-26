@@ -51,6 +51,7 @@ void main()
 				GP1 = 1;
 				
 				sensor_value = GetADCValue();
+				
 				while (sensor_value < 128) //Llenando.
 				{
 					sensor_value = GetADCValue();
@@ -64,13 +65,20 @@ void main()
 		{
 			__delay_ms(10);
 			if (GP3 == 1)
-			{
-				GP0 = 1;
-				
+			{	
 				sensor_value = GetADCValue();
-				while (sensor_value > 32) //Vaciando.
+				if (sensor_value > 32) //Vaciando.
 				{
-					sensor_value = GetADCValue();
+					GP0 = 1;
+					do {
+						sensor_value = GetADCValue();
+					} while (sensor_value > 32);
+				}
+				else
+				{
+					GP2 = 1;
+					__delay_ms(2000);
+					GP2 = 0;
 				}
 				
 				GP0 = 0;
