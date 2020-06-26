@@ -12,10 +12,11 @@
 
 unsigned int GetADCValue()
 {
-	__delay_ms(20);
+	__delay_ms(10);
 	GO_nDONE = 1;	// Enable Go/Done
-	NOP();
+	//NOP();
 	while(GO_nDONE);// Wait for conversion completion
+	//return ADRESH;
 	return ((ADRESH << 8) + ADRESL); // Return 10 bit ADC value
 }
 
@@ -32,9 +33,10 @@ void main()
 	
 	CMCON   = 0x07; // Deshabilito los comparadores.
     ANSEL   = 0x18; // Selecciono AN3 como entrada analógica.
-	TRISIO = 0x38;  // Seteo GPIO 5,4,3 como entradas.
-	GPIO = 0x00;	// NULL.
-	ADCON0 = 0b00001101;
+	TRISIO 	= 0x38; // Seteo GPIO 5,4,3 como entradas.
+	GPIO 	= 0x00;	// NULL.
+	//ADCON0	= 0b00001101;
+	ADCON0 = 0x0D;
 	//ADIE = 1;
 	
 	unsigned int sensor_value = 0; //El registro del que vamos a tomar es en realidad es un int de 10bits unsigned.
@@ -46,22 +48,20 @@ void main()
 			__delay_ms(10);
 			if (GP5 == 1)
 			{
-				GP1 = ~GP1;
+				GP1 = 1;
 			}
 			
 			while (GP5 == 1) //Llenando.
 			{
 				sensor_value = GetADCValue();
-				if (sensor_value > 900) //1024 max.
+				if (sensor_value > 850) //1024 max.
 				{
-					GP1 = 0;
-					GP5 = 0;
-					/*__delay_ms(10);
-					if (sensor_value < 512)
+					__delay_ms(10);
+					if (sensor_value > 850)
 					{
 						GP1 = 0;
 						GP5 = 0;
-					}*/
+					}
 				}
 			}
 		}
@@ -85,13 +85,3 @@ void main()
 		}
 	}
 }
-
-/*void __interrupt () interrup_handler (void)
-{
-       if (ADIF)
-       {
-            GetADCValue();
-            ADIF = 0;
-       }
-
-}*/
