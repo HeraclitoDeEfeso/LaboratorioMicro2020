@@ -11,11 +11,15 @@ La presente carpeta contiene el código fuente del binario que será impreso en 
 | Archivo | Descripción 
 |-|-
 | Readme.md | Este mismo archivo 
+| esquematico_tp3.jpg | Esquemático exportado de Proteus
+| firmware.c | Código C para el microcontrolador
+| firmware.hex | Binario para el microcontrolador
+| tp3.pdsprj | Proyecto Proteus
 
 _TODO_
 
-- [ ] Código fuente en C.
-- [ ] Proyecto de Proteus.
-    - [ ] Esquemático.
+- [X] Código fuente en C.
+- [X] Proyecto de Proteus.
+    - [X] Esquemático.
     - [ ] Placa 3D (Opcional).
     
